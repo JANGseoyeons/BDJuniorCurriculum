@@ -42,10 +42,11 @@ stash -> 현재 브랜치에서 커밋을 못한 상태에서 다른 브랜치�
  clone vs pull, add vs commit 
 
 * git의 Object, Commit, Head, Branch, Tag는 어떤 개념일까요? git 시스템은 프로젝트의 히스토리를 어떻게 저장할까요?
-  * C언어에 char, int, long, float, double과 같은 데이터 타입이 있는 것처럼,  git은 내부적으로 commit, tree, blob, tag의 4가지 오브젝트 타입을 관리합니다.
+  * C언어에 char, int, long, float, double과 같은 데이터 타입이 있는 것처럼,  git은 내부적으로 commit, tree, blob, tag의 4가지 오브젝트 타입을 관리합니다.  
+  
 
 * 리모트 git 저장소에 원하지 않는 파일이 올라갔을 때 이를 되돌리려면 어떻게 해야 할까요?
-  * 
+  * 로컬에서 $ git reset 명령어를 이용  $ git revert [되돌리고 싶은 commit의 hash]는 특정 커밋에서의 변경 사항을 제거하는 또 다른 커밋을 생성하는 명령어 이용
 
 
 ## Quest
@@ -58,8 +59,10 @@ stash -> 현재 브랜치에서 커밋을 못한 상태에서 다른 브랜치�
 
 ## Advanced
 
-* Mercurial은 어떤 형상관리 시스템일까요? 어떤 장점이 있을까요?
+* Mercurial은 어떤 형상관리 시스템일까요? 어떤 장점이 있을까요? 
+  * 분산 집중형 버전 관리 시스템이다.  Append 기반으로 동작함에 따라, 디스크에 오류가 있을 때에 저장소가 영향을 적게 받는다는 점도 Mercurial의 장점이다.
 * 실리콘밸리의 테크 대기업들은 어떤 형상관리 시스템을 쓰고 있을까요? 
+ * github를 많이 사용하는 추세이다.
 
-* hihhi
+
 
