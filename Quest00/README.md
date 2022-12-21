@@ -42,7 +42,8 @@ stash -> 현재 브랜치에서 커밋을 못한 상태에서 다른 브랜치�
  clone vs pull, add vs commit 
 
 * git의 Object, Commit, Head, Branch, Tag는 어떤 개념일까요? git 시스템은 프로젝트의 히스토리를 어떻게 저장할까요?
-  * C언어에 char, int, long, float, double과 같은 데이터 타입이 있는 것처럼,  git은 내부적으로 commit, tree, blob, tag의 4가지 오브젝트 타입을 관리한다.
+  * C언어에 char, int, long, float, double과 같은 데이터 타입이 있는 것처럼,  git은 내부적으로 commit, tree, blob, tag의 4가지 오브젝트 타입을 관리한다.  
+  히스토리는 commit -m 명령어를 이용해 저장한다.
   
 
 * 리모트 git 저장소에 원하지 않는 파일이 올라갔을 때 이를 되돌리려면 어떻게 해야 할까요?
