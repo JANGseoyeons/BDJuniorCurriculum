@@ -33,6 +33,7 @@
 * Flexbox(Flexible box)와 CSS Grid의 차이와 장단점은 무엇일까요?
 * CSS의 비슷한 요소들을 어떤 식으로 정리할 수 있을까요?
 
+* https://www.notion.so/Quest02-CSS-763f61771c6f46fd8bfb66d768d67047
 ## Quest
 
 * Quest 01에서 만들었던 HTML을 바탕으로, [이 그림](screen.png)의 레이아웃과 CSS를 최대한 비슷하게 흉내내 보세요. 꼭 완벽히 정확할 필요는 없으나 align 등의 속성은 일치해야 합니다.
