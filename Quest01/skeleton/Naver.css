@@ -84,7 +84,7 @@ img {
     width: 30px;
     height: 30px;
 }
-.weather{
+.weathercard{
     margin-bottom: 10px;
     background-color: white;
     display: flex;
@@ -93,7 +93,7 @@ img {
     height: 60px;
     border-radius: 10px 10px 0px 0px;
 }
-.weather1{
+.weathercard1{
     width: 500px;
     height: 200px;
     background-color: white;
@@ -117,14 +117,14 @@ p strong {
     margin: 10px;
     background-color: #E4E2E2;
 }
-.c19{
+.covid{
     background-color: white;
     width: 500px;
     height: 60px;
     display: flex;
     margin: 10px;
 }
-.c19 a{
+.covid a{
     margin: 10px;
     text-decoration: none;
     font-size: 15px;
@@ -141,7 +141,7 @@ p strong {
     height: 50px;
     margin-bottom: 10px; 
 }
-.naver {
+.grid1 {
     display: flex;
     justify-content: center;
     padding-top: 20px;
@@ -151,13 +151,13 @@ p strong {
     font-size: 10px;
     margin-bottom: 10px
 }
-.naver img {
+.grid1 img {
     border-radius: 5px;
 }
-.naver p {
+.grid1 p {
     padding-right: 70px;
 }
-.naver button {
+.grid1 button {
     background-color: white;
     border: 1px solid blue;
     font-size: 12px;
@@ -165,38 +165,38 @@ p strong {
     width: 70px;
     height: 30px;
 }
-.toon{
+.grid2{
     background-color: white;
     width: 500px;
     height: 50px;
     margin-bottom: 10px;
 }
-.toon p {
+.grid2 p {
     font-size: 13px;
     font-weight: bold;
     margin: 15px;
 }
-.p {
+.cp {
     background-color: white;
     width: 500px;
     height: 200px;
     margin-bottom: 10px;
 }
-.p1{
+.cp1{
     display: flex;
     justify-content: space-between;
     font-weight: bold;
 }
-.p1 button{
+.cp1 button{
     margin: 10px;
     width: 40px;
     height: 20px;
 }
-.p2{
+.cp2{
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-.p2 button {
+.cp2 button {
     text-align: left;
     height: 30px;
     margin: 5px;
@@ -232,5 +232,9 @@ footer li {
 footer p {
     font-size: 20px;
     color: #E4E2E2;
+}
+a {
+    text-decoration: none;
+    color: #000;
 }
 
