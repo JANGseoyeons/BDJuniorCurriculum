@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="./desktop.css">
-		<script src="./desktop.js"></script>
-	</head>
-	<body>
-		<section class="desktop">
-		</section>
-
-		<script>
-			let myDesktop = new Desktop(
-				/* TODO: myDesktop 인스턴스의 생성자의 변수로 무엇이 들어가야 할까요? */
-			);
-		</script>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./desktop.css" />
+    <script src="./desktop.js"></script>
+    <script
+      src="https://kit.fontawesome.com/4aa608e576.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <section class="desktop">
+      <i class="folder fa-solid fa-folder fa-3x"></i>
+      <i class="air fa-solid fa-plane fa-3x"></i>
+    </section>
+    <script>
+      let myDesktop = new Desktop("seoyeon");
+      myDesktop.sayHi();
+      /* TODO: myDesktop 인스턴스의 생성자의 변수로 무엇이 들어가야 할까요? */
+      /* 드래그 앤 드롭 기능 구현
+      조건 : 움직이는 범위 지정(물체 - absolute, 컨테이너 - relative)
+      물체 - mousedown 이벤트 document.box - mouseup, mousemove 이벤트*/
+      const container = document.querySelector(".desktop");
+      const folder = container.querySelector(".folder");
+    </script>
+  </body>
 </html>
