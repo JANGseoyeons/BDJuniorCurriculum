@@ -1,10 +1,14 @@
 class Desktop {
   /* TODO: Desktop 클래스는 어떤 멤버함수와 멤버변수를 가져야 할까요? */
-  constructor(name) {
-    this.name = name;
+  // desktop html 가져옴
+  constructor(props) {
+    this.props = props;
   }
-  sayHi() {
-    alert(this.name);
+  folder() {
+    let div = document.createElement("div");
+    div.setAttribute("class", "folder");
+    this.props.appendChild(div);
+    return this.props;
   }
 }
 
@@ -14,6 +18,7 @@ class Icon {
 
 class Folder {
   /* TODO: Folder 클래스는 어떤 멤버함수와 멤버변수를 가져야 할까요? */
+  // 폴더 아이콘의 위치
 }
 
 class Window {
