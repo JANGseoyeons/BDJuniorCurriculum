@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="/style.css">
-		<script src="/notepad.js"></script>
-	</head>
-	<body>
-		<!-- TODO: 이 곳을 채워 클라이언트를 만들어 보세요 -->
-		<script>
-			let notepad = new Notepad();
-		</script>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="notepad.js"></script>
+  </head>
+  <body>
+    <!-- TODO: 이 곳을 채워 클라이언트를 만들어 보세요 -->
+    <div class="text">
+      <h2>텍스트 에디터</h2>
+      <button id="bold">Bold</button>
+      <button id="italic">italic</button>
+      <button id="center">center</button>
+      <button id="lift">lift</button>
+      <button id="right">right</button>
+      <div id="editer" contenteditable="true"></div>
+      <button id="new">새 파일</button>
+      <button id="save">다른 이름으로 저장</button>
+    </div>
+    <script>
+      let notepad = new Notepad("sy");
+      console.log(notepad);
+    </script>
+  </body>
 </html>

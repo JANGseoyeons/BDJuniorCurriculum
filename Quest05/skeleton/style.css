@@ -1,3 +1,10 @@
 * {
-	/* TODO: 필요한 CSS를 채워넣어 보세요! */
+  padding: 10px;
+  margin: 5px;
+  /* TODO: 필요한 CSS를 채워넣어 보세요! */
+}
+#conent {
+  background-color: #d3d3d3;
+  width: 500px;
+  height: 500px;
 }
