@@ -24,18 +24,23 @@
 
 ## Checklist
 
-- node.js는 무엇인가요? node.js의 내부는 어떻게 구성되어 있을까요? -> 비동기 이벤트 주도 javascript 런타임
+- node.js는 무엇인가요? node.js의 내부는 어떻게 구성되어 있을까요?  
+  비동기 이벤트 주도 javascript 런타임
 
-- npm이 무엇인가요? `package.json` 파일은 어떤 필드들로 구성되어 있나요? -> npm이란 node.js로 만들어진 모듈을 관리해주는 툴이며, package.json 필드 구성요소는 name, version, description, main 등으로 구성되어 있다.
+- npm이 무엇인가요? `package.json` 파일은 어떤 필드들로 구성되어 있나요?  
+  npm이란 node.js로 만들어진 모듈을 관리해주는 툴이며, package.json 필드 구성요소는 name, version, description, main 등으로 구성되어 있다.
 
-- npx는 어떤 명령인가요? npm 패키지를 `-g` 옵션을 통해 글로벌로 저장하는 것과 그렇지 않은 것은 어떻게 다른가요?-> npx란 npm을 좀 더 편하게 사용하기 위해서 npm에서 제공해주는 하나의 도구이다. -g의 옵션을 추가하면 전역적으로 저장하는 것이 되며, 옵션을 별도로 추가하지 않을 경우에는 지역적으로 저장된다.
+- npx는 어떤 명령인가요? npm 패키지를 `-g` 옵션을 통해 글로벌로 저장하는 것과 그렇지 않은 것은 어떻게 다른가요?  
+  npx란 npm을 좀 더 편하게 사용하기 위해서 npm에서 제공해주는 하나의 도구이다.  
+  -g의 옵션을 추가하면 전역적으로 저장하는 것이 되며, 옵션을 별도로 추가하지 않을 경우에는 지역적으로 저장된다.
 
-- 자바스크립트 코드에서 다른 파일의 코드를 부르는 시도들은 지금까지 어떤 것이 있었을까요? CommonJS 대신 ES Modules가 등장한 이유는 무엇일까요? -> import를 사용해 코드를 불러왔다.
+- 자바스크립트 코드에서 다른 파일의 코드를 부르는 시도들은 지금까지 어떤 것이 있었을까요? CommonJS 대신 ES Modules가 등장한 이유는 무엇일까요?  
+  import를 사용해 코드를 불러왔다.
 
-- ES Modules는 기존의 `require()`와 동작상에 어떤 차이가 있을까요? CommonJS는 할 수 있으나 ES Modules가 할 수 없는 일에는 어떤 것이 있을까요? ->
+- ES Modules는 기존의 `require()`와 동작상에 어떤 차이가 있을까요? CommonJS는 할 수 있으나 ES Modules가 할 수 없는 일에는 어떤 것이 있을까요?
 
-- node.js에서 ES Modules를 사용하려면 어떻게 해야 할까요? ES Modules 기반의 코드에서 CommonJS 기반의 패키지를 불러오려면 어떻게 해야 할까요? 그 반대는 어떻게 될까요?
-  -> CJS인 경우 'require(), module.exports'를 사용하며, ESM은 'import(), export'를 사용한다.(ESM에서 CJ를 서로 호출 할 수 있으나 귀찮은 일)
+- node.js에서 ES Modules를 사용하려면 어떻게 해야 할까요? ES Modules 기반의 코드에서 CommonJS 기반의 패키지를 불러오려면 어떻게 해야 할까요? 그 반대는 어떻게 될까요?  
+  CJS인 경우 'require(), module.exports'를 사용하며, ESM은 'import(), export'를 사용한다.(ESM에서 CJ를 서로 호출 할 수 있으나 귀찮은 일)
 
 ## Quest
 

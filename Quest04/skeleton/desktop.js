@@ -8,9 +8,11 @@ class Desktop {
 
 class Icon {
   /* TODO: Icon 클래스는 어떤 멤버함수와 멤버변수를 가져야 할까요? */
-  //드래그 기능
-  drag() {
-    console.log("hi");
+  constructor(isClicked, offsetX, offsetY, currentObject) {
+    this.isClicked = isClicked;
+    this.offsetX = offsetX;
+    this.offsetY = offsetY;
+    this.currentObject = currentObject;
   }
 }
 

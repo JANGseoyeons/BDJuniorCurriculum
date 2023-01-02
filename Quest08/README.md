@@ -20,11 +20,19 @@
 
 ## Checklist
 
-- HTTP의 GET과 POST 메소드는 어떻게 다른가요? -> get으로 서버에게 동일한 요청을 여러 번 전송하더라도 동일한 응답이 돌아와햐 한다는 것을 의미하며, post는 서버에게 동일한 요청을 여러 번 전송해도 응답은 항상 다를 수 있습니다.
-  - 다른 HTTP 메소드에는 무엇이 있나요?
-- HTTP 서버에 GET과 POST를 통해 데이터를 보내려면 어떻게 해야 하나요? ->
-  - HTTP 요청의 `Content-Type` 헤더는 무엇인가요?
+- HTTP의 GET과 POST 메소드는 어떻게 다른가요?  
+  get으로 서버에게 동일한 요청을 여러 번 전송하더라도 동일한 응답이 돌아와햐 한다는 것을 의미하며,  
+  post는 서버에게 동일한 요청을 여러 번 전송해도 응답은 항상 다를 수 있습니다.
+
+- 다른 HTTP 메소드에는 무엇이 있나요?
+- HTTP 서버에 GET과 POST를 통해 데이터를 보내려면 어떻게 해야 하나요?
+
+  - HTTP 요청의 `Content-Type` 헤더는 무엇인가요?  
+    Content-Type은 보내는 자원의 형태를 명시하는 헤더입니다.  
+    content-Type의 종류는 Multipart Related MIME타입, XML Media타입, Application 타입, 오디오 타입, Multipart타입, TEXT타입이 있다.
+
   - Postman에서 POST 요청을 보내는 여러 가지 방법(`form-data`, `x-www-form-urlencoded`, `raw`, `binary`) 각각은 어떤 용도를 가지고 있나요?
+
 - node.js의 `http` 모듈을 통해 HTTP 요청을 처리할 때,
 
   - `req`와 `res` 객체에는 어떤 정보가 담겨있을까요? ->
