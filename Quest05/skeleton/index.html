@@ -7,21 +7,75 @@
   </head>
   <body>
     <!-- TODO: 이 곳을 채워 클라이언트를 만들어 보세요 -->
-    <div class="text">
-      <h2>텍스트 에디터</h2>
-      <button id="bold">Bold</button>
-      <button id="italic">italic</button>
-      <button id="center">center</button>
-      <button id="lift">lift</button>
-      <button id="right">right</button>
-      <div id="editer" contenteditable="true"></div>
-      <button id="new">새 파일</button>
-      <button id="save">저장</button>
-      <button id="save">다른 이름으로 저장</button>
-    </div>
+    <ul class="btnmenu">
+      <li>
+        <select id="fontS" onchange="fontS()">
+          <option value="8">8</option>
+          <option value="16">16</option>
+          <option value="20">20</option>
+          <option value="24">24</option>
+          <option value="30">30</option>
+        </select>
+      </li>
+      <li><button class="Bold">B</button></li>
+      <li><button class="Italic">I</button></li>
+      <li><button class="Under">U</button></li>
+      <li><button class="Canter">C</button></li>
+      <li><button class="Left">L</button></li>
+      <li><button class="Right">R</button></li>
+    </ul>
+    <textarea id="textinput" placeholder="텍스트를 입력하시오"></textarea>
+    <ul class="btnmenu">
+      <li><button class="d">새 파일</button></li>
+      <li><button class="store">저장</button></li>
+    </ul>
     <script>
-      let notepad = new Notepad("sy");
-      console.log(notepad);
+      let textarea = document.querySelector("#textinput");
+      let BoldSt = document.querySelector(".Bold");
+      let ItalicSt = document.querySelector(".Italic");
+      let UnderlineSt = document.querySelector(".Under");
+      let CenterP = document.querySelector(".Canter");
+      let LeftP = document.querySelector(".Left");
+      let RightP = document.querySelector(".Right");
+      let Fsize = document.querySelector("#fontS");
+      let save = document.querySelector(".store");
+
+      function BoldChange() {
+        textarea.style.fontWeight = "bold";
+      }
+      function ItalicChange() {
+        textarea.style.fontStyle = "italic";
+      }
+      function UnderChange() {
+        textarea.style.textDecoration = "underline";
+      }
+      function Center() {
+        textarea.style.textAlign = "center";
+      }
+      function Left() {
+        textarea.style.textAlign = "left";
+      }
+      function Right() {
+        textarea.style.textAlign = "right";
+      }
+      function fontS() {
+        const a = Fsize.options[Fsize.selectedIndex].value;
+        textarea.style.fontSize = `${a}px`;
+      }
+      function Save() {
+        localStorage.text = textarea.value;
+      }
+
+      BoldSt.addEventListener("click", BoldChange);
+      ItalicSt.addEventListener("click", ItalicChange);
+      UnderlineSt.addEventListener("click", UnderChange);
+      CenterP.addEventListener("click", Center);
+      LeftP.addEventListener("click", Left);
+      RightP.addEventListener("click", Right);
+      Fsize.addEventListener("click", fontS);
+      save.addEventListener("click", Save);
+
+      let notepad = new Notepad();
     </script>
   </body>
 </html>
