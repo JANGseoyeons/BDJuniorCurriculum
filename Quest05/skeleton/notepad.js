@@ -22,6 +22,8 @@ class Notepad {
     this.Fsize.addEventListener("change", this.fontS.bind(this));
     this.save.addEventListener("click", this.Save.bind(this));
     this.new.addEventListener("click", this.change.bind(this));
+
+    console.log(localStorage.getItem("text"));
   }
 
   BoldChange() {
@@ -47,7 +49,10 @@ class Notepad {
     this.input.style.fontSize = `${a}px`;
   }
   Save() {
-    localStorage.text = this.input.value;
+    // if (localStorage.getItem("text") === this.input.value) {
+    //   alert("값이 같아요");
+    // }
+    // localStorage.text = this.input.value;
   }
   change() {
     var win = window.open("./index.html", "_blank");

@@ -21,29 +21,32 @@ class Icon {
     this.xOffset = 0;
     this.yOffset = 0;
 
-    this.div.addEventListener("mousedown", this.dragStart.bind(this));
-    this.div.addEventListener("mouseup", this.dragEnd.bind(this));
-    this.div.addEventListener("mousemove", this.drag.bind(this));
+    this.div.addEventListener("mousedown", Icon.dragStart.bind(this));
+    this.div.addEventListener("mouseup", Icon.dragEnd.bind(this));
+    this.div.addEventListener("mousemove", Icon.drag.bind(this));
     this.section.append(this.div);
   }
 
-  dragStart(event) {
+  static dragStart(event) {
     this.initialX = event.clientX - this.xOffset;
     this.initialY = event.clientY - this.yOffset;
 
-    if (event.target === this.div) {
-      this.isDragging = true;
-    }
+    this.isDragging = true;
+    console.log("start :", this.initialX);
   }
 
-  dragEnd(event) {
+  static dragEnd(event) {
     this.initialX = this.currentX;
     this.initialY = this.currentY;
 
     this.isDragging = false;
+    console.log("end :", this.initialX);
   }
 
-  drag(event) {
+  static drag(event) {
+    function setTranslate(xPos, yPos, el) {
+      el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+    }
     if (this.isDragging) {
       event.preventDefault();
       this.currentX = event.clientX - this.initialX;
@@ -52,12 +55,9 @@ class Icon {
       this.xOffset = this.currentX;
       this.yOffset = this.currentY;
 
-      this.setTranslate(this.currentX, this.currentY, this.div);
+      setTranslate(this.currentX, this.currentY, event.target);
     }
-  }
-
-  setTranslate(xPos, yPos, el) {
-    el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+    console.log("ing :", this.initialX);
   }
 }
 // 드래그 기능(Icon 상속)
@@ -68,19 +68,20 @@ class Folder extends Icon {
   }
   // 폴더창 열기 기능
   open() {
-    let folder = new Folder("model");
-    // this.model = document.createElement("div");
-    // this.model.className = "model";
-    // this.model.innerHTML = `<p>폴더창</p><button class='close'>닫기</button>`;
-    // const section = document.querySelector(".desktop");
-    // section.appendChild(this.model);
-    // this.model.addEventListener("mousedown", Icon.dragStart);
-    // this.model.addEventListener("mouse", Icon.drag);
-    // this.model.addEventListener("mouseup", Icon.dragEnd);
+    // let folder = new Folder("model");
+    this.model = document.createElement("div");
+    this.model.className = "model";
+    this.model.innerHTML = `<p>폴더창</p><button class='close'>닫기</button>`;
+    const section = document.querySelector(".desktop");
+    section.appendChild(this.model);
+
+    this.model.addEventListener("mousedown", Icon.dragStart.bind(this));
+    this.model.addEventListener("mouse", Icon.drag.bind(this));
+    this.model.addEventListener("mouseup", Icon.dragEnd.bind(this));
   }
 
   rander() {
-    this.div.addEventListener("dblclick", this.open);
+    this.div.addEventListener("dblclick", this.open.bind(this));
   }
 }
 
@@ -102,7 +103,7 @@ class Window {
   }
   post() {
     for (let i = 0; i < this.input1.value; i++) {
-      let myIcon = new Icon("Icon", this.d1.value, this.d2.value);
+      let myIcon = new Icon("Icon");
     }
     for (let i = 0; i < this.input2.value; i++) {
       let myFolder = new Folder("Folder");
