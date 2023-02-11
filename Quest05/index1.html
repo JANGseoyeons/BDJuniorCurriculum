@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="notepad.js"></script>
+  </head>
+  <body>
+    <!-- TODO: 이 곳을 채워 클라이언트를 만들어 보세요 -->
+    <div class="section">
+      <ul class="btnmenu">
+        <li>
+          <select id="fontS">
+            <option value="8">8</option>
+            <option value="16">16</option>
+            <option value="20">20</option>
+            <option value="24">24</option>
+            <option value="30">30</option>
+          </select>
+        </li>
+        <li><button class="Bold">B</button></li>
+        <li><button class="Italic">I</button></li>
+        <li><button class="Under">U</button></li>
+        <li><button class="Canter">C</button></li>
+        <li><button class="Left">L</button></li>
+        <li><button class="Right">R</button></li>
+      </ul>
+      <textarea id="textinput" placeholder="텍스트를 입력하시오"></textarea>
+      <ul class="btnmenu">
+        <li>
+          <button class="new">새 파일</button>
+        </li>
+        <li><button class="store">저장</button></li>
+      </ul>
+    </div>
+    <script>
+      const textinput = document.querySelector("#textinput");
+      let notepad = new Notepad(textinput);
+    </script>
+  </body>
+</html>

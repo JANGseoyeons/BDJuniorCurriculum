@@ -21,13 +21,13 @@ class Icon {
     this.xOffset = 0;
     this.yOffset = 0;
 
-    this.div.addEventListener("mousedown", Icon.dragStart.bind(this));
-    this.div.addEventListener("mouseup", Icon.dragEnd.bind(this));
-    this.div.addEventListener("mousemove", Icon.drag.bind(this));
+    this.div.addEventListener("mousedown", (evt) => this.dragStart(evt));
+    this.div.addEventListener("mouseup", (evt) => this.dragEnd(evt));
+    this.div.addEventListener("mousemove", (evt) => this.drag(evt));
     this.section.append(this.div);
   }
 
-  static dragStart(event) {
+  dragStart(event) {
     this.initialX = event.clientX - this.xOffset;
     this.initialY = event.clientY - this.yOffset;
 
@@ -35,7 +35,7 @@ class Icon {
     console.log("start :", this.initialX);
   }
 
-  static dragEnd(event) {
+  dragEnd() {
     this.initialX = this.currentX;
     this.initialY = this.currentY;
 
@@ -43,7 +43,7 @@ class Icon {
     console.log("end :", this.initialX);
   }
 
-  static drag(event) {
+  drag(event) {
     function setTranslate(xPos, yPos, el) {
       el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
     }
@@ -75,9 +75,9 @@ class Folder extends Icon {
     const section = document.querySelector(".desktop");
     section.appendChild(this.model);
 
-    this.model.addEventListener("mousedown", Icon.dragStart.bind(this));
-    this.model.addEventListener("mouse", Icon.drag.bind(this));
-    this.model.addEventListener("mouseup", Icon.dragEnd.bind(this));
+    this.model.addEventListener("mousedown", (evt) => this.dragStart(evt));
+    this.model.addEventListener("mousemove", (evt) => this.drag(evt));
+    this.model.addEventListener("mouseup", (evt) => this.dragEnd(evt));
   }
 
   rander() {

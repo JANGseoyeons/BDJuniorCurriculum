@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="setion">
+      <div id="insert">
+        <h2>INSERT IN</h2>
+        <form method="post" action="/users" id="form">
+          <input name="insertId" type="text" placeholder="PLEASE WRITE ID" />
+          <input
+            type="password"
+            name="insertPw"
+            placeholder="PLEASE WRITE PW"
+          />
+          <button type="submit" id="insert">INSERT IN</button>
+        </form>
+      </div>
+      <!-- <div id="login">
+        <h2>LOG IN</h2>
+        <form method="post" action="./login.do">
+          <input id="loginID" type="text" placeholder="PLEASE WRITE ID" />
+          <input type="password" id="loginPW" placeholder="PLEASE WRITE PW" />
+          <button id="loginBTN" type="submit">LOG IN</button>
+        </form>
+      </div> -->
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/sequelize.js"></script>
+  </body>
+</html>
