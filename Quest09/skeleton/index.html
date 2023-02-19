@@ -126,7 +126,6 @@
         /* TODO: 그 외에 또 어떤 클래스와 메소드가 정의되어야 할까요? */
         constructor() {
           this.name = prompt("폴더이름을 입력하세요");
-          this.listNode = this.createListNode();
           this.tabNode = this.createTabNode();
         }
 
@@ -150,14 +149,10 @@
 
           // 삭제 기능
           const tabL = document.getElementsByTagName("li");
-          tabL.addEventListener("click", function () {
+          tabL.addEventListener("dblclick", function () {
             console.log("click");
           });
-
-          return tabNode;
         }
-
-        deleteNotepad() {}
       }
 
       let textArea = document.getElementById("textBox");
@@ -167,36 +162,18 @@
       const list = document.getElementById("list");
 
       // 파일 탭에서 클릭이나 리스트에서 더블클릭 시
-      tab.addEventListener("click", isRevised);
-      list.addEventListener("dblclick", isRevised);
-      tab.addEventListener("click", textOpenHandler);
       tab.addEventListener("dblclick", remove);
-      list.addEventListener("dblclick", textOpenHandler);
+      tab.addEventListener("click", textOpenHandler);
+
+      //삭제기능
 
       let tabTarget;
       let curTarget;
-
-      function remove(e) {
-        console.log(e.target.innerText);
-        let fileData = {
-          method: "POST",
-          body: JSON.stringify({
-            fileNm: e.target.innerText,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-        fetch(`/delect`, fileData)
-          .then((response) => response.json())
-          .catch((err) => {});
-      }
 
       function textOpenHandler(e) {
         if (e.target.tagName == "UL") {
           return;
         }
-
         const form = document.querySelector("#form");
         form.style.display = "flex";
         tabTarget = e.target;
@@ -217,7 +194,8 @@
         }
       }
 
-      // 저장
+      // 서버에 파일명과 파일내용을 fetch를 이용해 값을 서버로 보내는 코드
+      // response.ok ->
       const saveBtn = document.querySelector("#saveBtn");
 
       const text = document.querySelector("#textBox");
@@ -236,23 +214,47 @@
           },
         };
         fetch(`/save`, fileData)
-          .then((response) => response.json())
-          .catch((err) => {});
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network resposne was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            alert("저장이 완료되었습니다.");
+          })
+          .catch((err) => {
+            console.error("Error:", error);
+          });
       });
+
       // 다른 파일 open시 값의 변경이 있었다면 경고창
 
-      function isRevised() {
-        if (tabTarget === undefined) {
-          return;
-        } else if (
-          localStorage.getItem(tabTarget.textContent) !== textArea.value
-        ) {
-          if (confirm("저장하시겠습니까?")) {
-            saveFile();
-          } else {
-            return;
-          }
-        }
+      function remove(e) {
+        console.log(e.target.innerText);
+        console.log("탭을 클릭하였습니다.");
+        let fileData = {
+          method: "POST",
+          body: JSON.stringify({
+            fileNm: e.target.innerText,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        fetch("/delect", fileData)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network resposne was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            alert("삭제가 되었습니다.");
+          })
+          .catch((err) => {
+            console.error("Error:", error);
+          });
       }
 
       // 탭 오픈한거 불들어오게
@@ -299,7 +301,7 @@
         curTarget = tabTarget;
       }
 
-      // 탭닫기;
+      // 탭닫기
       tab.addEventListener("click", closeTab);
 
       function closeTab(e) {

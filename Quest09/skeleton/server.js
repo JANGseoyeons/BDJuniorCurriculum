@@ -24,12 +24,11 @@ app.post("/save", (req, res) => {
 });
 app.post("/delect", (req, res) => {
   console.log(req.body.fileNm);
-  res.send(req.body);
+  // res.send(req.body);
   // 로컬파일시스템
-  fs.unlink(`./data/${req.body.fileNm}`, (err) => {
-    console.log(post.id);
-    response.writeHead(302, { Location: `/` }); //요청한 주소로 리다이렉션
-    response.end();
+  fs.unlink(`../data/${req.body.fileNm}.txt`, (err) => {
+    if (err) throw err;
+    console.log("File is deleted.");
   });
 });
 
