@@ -1,1 +1,19 @@
 /* TODO: 자유롭게 바탕화면 시스템의 CSS를 만들어 보세요! */
+#Icon {
+  background-color: blue;
+  width: 20px;
+  height: 20px;
+  margin-bottom: 10px;
+}
+#Folder {
+  background-color: rgb(240, 191, 241);
+  width: 20px;
+  height: 20px;
+  margin-bottom: 10px;
+}
+.model {
+  background-color: beige;
+  width: 200px;
+  height: 100px;
+  /* display: none; */
+}
