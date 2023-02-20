@@ -39,7 +39,7 @@
 - GraphQL 기반의 API를 만들 때 에러처리와 HTTP 상태코드 등은 어떻게 하는게 좋을까요?  
   요청처리 성공은 200, GraphQL server / apollo server initialization 실패처리 / rest api 실패처리 / resolver가 정의되어있지 않는 변수/객체를 반환하는 오류 등으로 구별하는 것이 좋다.
 
-## Quest
+## (선택사항) Quest
 
 - 메모장의 서버와 클라이언트 부분을 GraphQL API로 수정해 보세요.
 
