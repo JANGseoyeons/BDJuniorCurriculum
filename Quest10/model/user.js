@@ -1,4 +1,3 @@
-// 아이디, 패스워드, 닉네임 하드코딩
 let userList = [
   {
     id: "peanut1234",

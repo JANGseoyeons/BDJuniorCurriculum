@@ -2,47 +2,63 @@
 
 ## Introduction
 
-* 이번 퀘스트에서는 자동화된 테스트에 어떤 장점이 있는지, 어떤 식으로 구축할 수 있는지에 대해 알아보겠습니다.
+- 이번 퀘스트에서는 자동화된 테스트에 어떤 장점이 있는지, 어떤 식으로 구축할 수 있는지에 대해 알아보겠습니다.
 
 ## Topics
 
-* Automated Test
-  * TDD
-  * Unit Test
-  * Integration Test
-  * E2E Test
-  * Stub & Mock
-* Jest
-* Puppeteer
-* Mocha
+- Automated Test
+  - TDD
+  - Unit Test
+  - Integration Test
+  - E2E Test
+  - Stub & Mock
+- Jest
+- Puppeteer
+- Mocha
 
 ## Resources
 
-* [Unit Test (단위 테스트) 도입하기](https://www.popit.kr/unit-test-%EB%8B%A8%EC%9C%84-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%8F%84%EC%9E%85%ED%95%98%EA%B8%B0-1%ED%8E%B8/)
-* [소프트웨어 테스트 안티 패턴](https://velog.io/@leejh3224/%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%95%88%ED%8B%B0-%ED%8C%A8%ED%84%B4)
-* [End-to-End testing with Puppeteer and Jest](https://medium.com/touch4it/end-to-end-testing-with-puppeteer-and-jest-ec8198145321)
-* [Mock & Stub](https://stackoverflow.com/questions/3459287/whats-the-difference-between-a-mock-stub)
-* [Mocha](https://ko.javascript.info/testing-mocha)
+- [Unit Test (단위 테스트) 도입하기](https://www.popit.kr/unit-test-%EB%8B%A8%EC%9C%84-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%8F%84%EC%9E%85%ED%95%98%EA%B8%B0-1%ED%8E%B8/)
+- [소프트웨어 테스트 안티 패턴](https://velog.io/@leejh3224/%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%95%88%ED%8B%B0-%ED%8C%A8%ED%84%B4)
+- [End-to-End testing with Puppeteer and Jest](https://medium.com/touch4it/end-to-end-testing-with-puppeteer-and-jest-ec8198145321)
+- [Mock & Stub](https://stackoverflow.com/questions/3459287/whats-the-difference-between-a-mock-stub)
+- [Mocha](https://ko.javascript.info/testing-mocha)
 
 ## Checklist
 
-* 자동화된 테스트를 만드는 것에는 어떤 장점과 단점이 있을까요?
-  * TDD(Test-Driven Development)란 무엇인가요? TDD의 장점과 단점은 무엇일까요?
-* 테스트들 간의 계층에 따라 어떤 단계들이 있을까요?
-  * 유닛 테스트, 통합 테스트, E2E 테스트는 각각 어떤 것을 뜻하나요?
-  * 테스트에 있어서 Stub과 Mock은 어떤 개념을 가리키는 것일까요?
-* Mocha는 어떤 일을 하며 어떻게 사용하는 테스트 프레임워크일까요?
-* (선택사항) Jest는 어떤 일을 하며 어떻게 사용하는 테스트 프레임워크일까요?
-  * Jest 이외의 테스트 프레임워크는 어떤 것이 있고 어떤 장단점이 있을까요?
-* (선택사항) Puppeteer는 어떤 일을 하며 어떻게 사용하는 테스트 프레임워크일까요?
+- 자동화된 테스트를 만드는 것에는 어떤 장점과 단점이 있을까요?  
+  장점: 시간과 노력을 절약, 사람의 실수나 주관적인 판단의 영향을 받지 않으므로, 일관성, 정확성이 보장, 소프트웨어의 품질 향상, 개발자와 QA가 더 높은 수준으로 협업할 수 있도록 돕는다.  
+  단점: 초기비용과 노력 필요, UI테스트나 모바일 앱 테스트 경우 자동화가 어려움
+  - TDD(Test-Driven Development)란 무엇인가요? TDD의 장점과 단점은 무엇일까요?  
+    소프트웨어 개발 방법론 중 하나로, 테스트 코드를 먼저 작성하고 그에 대응하는 기능 코드를 작성하는 개발 방법입니다.  
+    장점은 높은 품질의 코드 작성, 코드의 결함을 발견, 수정하는 것을 적극적으로 장려, 테스트 케이스가 존재하기 때문에, 코드 리팩토링 과정에서 발생하는 문제를 사전에 방지 가능  
+    단점: 테스트 코드와 기능 코드의 관리 필요, 경험이 없는 경우 어려움 발생, 테스트 케이스 작성이 필수적이지 않은 경우 TDD 불필요하다고 판단할 가능성이 높음
+- 테스트들 간의 계층에 따라 어떤 단계들이 있을까요?  
+  단위테스트, 통합테스트, 시스템테스트, 인수테스트
+  - 유닛 테스트, 통합 테스트, E2E 테스트는 각각 어떤 것을 뜻하나요?  
+    유닛테스트: 소프트웨터 개발에서 가장 작은 단위인 모듈, 함수 등 개별적인 코드 단위의 동작을 검증하는 테스트
+    통합테스트: 단위테스트를 통해 검증한 개별 모듈을 하나로 묶어 동작하는 전체 시스템의 동작을 검증하는 테스트
+    E2E테스트: 사용자 관점에서 전체 시스템이 올바르게 동작하는지 검증하는 테스트
+  - 테스트에 있어서 Stub과 Mock은 어떤 개념을 가리키는 것일까요?  
+    Stub는 실제로 동작하는 객체 대신, 특정 메소드가 호출될 때 미리 정해진 결과를 반환하는 객체
+    Mock은 테스트 중에 실제 객체가 호출되었는지 여부를 확인하기 위해 사용되는 객체
+- Mocha는 어떤 일을 하며 어떻게 사용하는 테스트 프레임워크일까요?  
+  node.js 및 브라우저에서 동작하는 테스트 프레임워크입니다. 테스트 스위트를 작성하고 실행할 수 있으며, 테스트 결과를 보고할 수 있습니다.
+- (선택사항) Jest는 어떤 일을 하며 어떻게 사용하는 테스트 프레임워크일까요?
+  - Jest 이외의 테스트 프레임워크는 어떤 것이 있고 어떤 장단점이 있을까요?  
+    Mocha 장점 BDD와 TDD 스타일을 모두 지원 단점은 테스트 더블을 지원하지 않아 Stub과 Mock등의 테스트 더블 구현  
+    Jasmine 장점 BDD 스타일을 지원하며, 다양한 어설션 라이브러리와 연동하여 사용, 단점은 실행 속도가 느림  
+    Ava 장점 실행속도가 빠르며, 병렬 처리 기능 제공, 단점은 다양한 어설션 라이브러리와 연동하기 어려움  
+    Cucumber 장점은 이해하기 쉬운 Gherkin언어로 작성, BDD 스타일을 지원, 단점은 다른 프레임워크에 비해 느리다는 단점, 유지보수가 어려움
+- (선택사항) Puppeteer는 어떤 일을 하며 어떻게 사용하는 테스트 프레임워크일까요?
 
 ## Quest
 
-* 직전 퀘스트의 메모장의 서버와 클라이언트 각 부분
-  * Mocha를 이용한 유닛 테스트, 통합 테스트를 추가해보세요.
-  * (선택사항) E2E 테스트를 추가해 보세요.
-  * `npm test` 명령을 통해 모든 테스트가 돌고 그 결과를 출력할 수 있어야 합니다.
+- 직전 퀘스트의 메모장의 서버와 클라이언트 각 부분
+  - Mocha를 이용한 유닛 테스트, 통합 테스트를 추가해보세요.
+  - (선택사항) E2E 테스트를 추가해 보세요.
+  - `npm test` 명령을 통해 모든 테스트가 돌고 그 결과를 출력할 수 있어야 합니다.
 
 ## Advanced
 
-* 테스트의 커버리지는 어떤 개념일까요? 프로젝트에서 테스트의 커버리지는 어떻게 접근하는 것이 좋을까요?
+- 테스트의 커버리지는 어떤 개념일까요? 프로젝트에서 테스트의 커버리지는 어떻게 접근하는 것이 좋을까요?
