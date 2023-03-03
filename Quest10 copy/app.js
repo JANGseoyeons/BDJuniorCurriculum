@@ -43,6 +43,7 @@ function authenticate(email, password) {
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 
+
 // 세션 설정
 app.use(
   session({

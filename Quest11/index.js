@@ -14,8 +14,6 @@ app.get("/", (req, res) => {
 });
 
 // 클릭 이벤트
-const loginBtn = document.querySelector(".login");
-console.log(loginBtn);
 
 (async () => {
   try {
