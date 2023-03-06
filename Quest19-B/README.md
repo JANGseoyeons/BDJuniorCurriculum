@@ -2,28 +2,34 @@
 
 ## Introduction
 
-* 이번 퀘스트에서는 현대적인 서버 아키텍쳐 패턴에 대해 익혀 보도록 하겠습니다.
+- 이번 퀘스트에서는 현대적인 서버 아키텍쳐 패턴에 대해 익혀 보도록 하겠습니다.
 
 ## Topics
 
-* Microservice Architecture
-* Serverless Architecture
-* AWS Lambda
-* Service Mesh
+- Microservice Architecture
+- Serverless Architecture
+- AWS Lambda
+- Service Mesh
 
 ## Resources
 
-* [Jeff Bezos의 이메일](https://news.hada.io/topic?id=638)
-* [마이크로서비스란?](https://www.redhat.com/ko/topics/microservices/what-are-microservices)
-* [AWS Lambda](https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/welcome.html)
-* [AWS API Gateway](https://docs.aws.amazon.com/ko_kr/apigateway/latest/developerguide/welcome.html)
+- [Jeff Bezos의 이메일](https://news.hada.io/topic?id=638)
+- [마이크로서비스란?](https://www.redhat.com/ko/topics/microservices/what-are-microservices)
+- [AWS Lambda](https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/welcome.html)
+- [AWS API Gateway](https://docs.aws.amazon.com/ko_kr/apigateway/latest/developerguide/welcome.html)
 
 ## Checklist
 
-* 마이크로서비스 아키텍쳐란 무엇일까요? 어떤 식으로 서비스를 구성할 수 있을까요? 어떤 장점을 가지고 있을까요?
-* 서버리스 아키텍쳐란 무엇일까요? 어떤 식으로 서비스를 구성할 수 있을까요? 어떤 장점을 가지고 있을까요?
-* 많은 마이크로서비스들을 복잡하게 연결할 경우 관리상에 어떤 난점이 생길 수 있을까요? 서비스 메쉬는 무엇이고 이러한 난점을 어떻게 해결하려는 시도일까요?
+- 마이크로서비스 아키텍쳐란 무엇일까요? 어떤 식으로 서비스를 구성할 수 있을까요? 어떤 장점을 가지고 있을까요?  
+  서비스를 여러 작은 독립적인 단위로 분리하여 관리하고 개발하는 아키텍처입니다. 이는 단일 대규묘 서비스를 작은 서비스로 나누어 독립적으로 개발, 배포, 운뎡, 확장 및 유지보수할 수 있도록 해준다.  
+  작은 단위의 서비스로 구성하며, 독립적으로 배포 및 운뎡할 수 있는 자체적인 데이터 스토어를 기지고 있으며, 서비스 간 통신은 API를 통해 이루어진다. 서비스는 컨테이너 기반의 가상화 기술을 사용하여 배포와 같은 방식으로 서비스를 구성합니다.  
+  장점에는 높은 유연성, 높은 확장성, 높은 가용성, 기술적 다양성, 개발 생산성 향상이 있습니다.
+- 서버리스 아키텍쳐란 무엇일까요? 어떤 식으로 서비스를 구성할 수 있을까요? 어떤 장점을 가지고 있을까요?  
+  서버를 직접 관리하지 않고 클라우드 서비스 제공 업체가 인프라를 관리하고 서비스를 실행하는 아키텍처입니다. 함수단위로 서비스를 구성합니다. 이러한 함수는 특정 이벤트에 의해 트리거되고 실행합니다. 함수가 실행될 때 클라우드 서비스 제공 업체가 필요한 컴퓨터링 리소스를 자동으로 할당하고 실행합니다. 장점에는 비용 효율성, 확장성, 개발 생산성, 높은 가용성이 있습니다.
+- 많은 마이크로서비스들을 복잡하게 연결할 경우 관리상에 어떤 난점이 생길 수 있을까요? 서비스 메쉬는 무엇이고 이러한 난점을 어떻게 해결하려는 시도일까요?  
+  서비스들 간의 직접적인 통신을 구성하면, 서비스 간의 의존성이 복잡하게 얽히게 되어 유지보수와 운영이 어려워질 수 있습니다. 또한 서비스들이 분산되어 실행되기 때문에 서비스 간의 네트워크 통신 지연이 발생할 수 있다.  
+  서비스 매쉬는 이러한 문제를 해결하기 위해 등장한 개념이며, 서비스들간의 통신을 추상화아여, 서비스 간의 의존성을 줄이고 네트워크 통신을 효율적으로 관리하는 방법을 제공한다. 내무에 사이트카 프록시를 배치하여, 서비스 간의 통신을 사이드카 프록시가 중계하도록 한다. 이를 통해 서비스 간의 직접적인 통신을 줄이고, 사이트 카 프록시가 서비스 간의 통신을 관리하므로 네트워크 통신 지견을 최소화할 수 있다.
 
 ## Advanced
 
-* (선택사항) Istio는 어떤 툴일까요? 이 툴을 Kubernetes와 함께 사용하여 어떤 구조를 구현할 수 있을까요?
+- (선택사항) Istio는 어떤 툴일까요? 이 툴을 Kubernetes와 함께 사용하여 어떤 구조를 구현할 수 있을까요?
