@@ -3,32 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
-    <script src="notepad.js"></script>
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <!-- TODO: 이 곳을 채워 클라이언트를 만들어 보세요 -->
-    <div class="section">
-      <div class="wrap">
-        <div class="tab_menu">
-          <ul class="list">
-            <li class="is_on">
-              <a href="#tab1" class="btn">Tab Button1</a>
-              <div id="tab1" class="cont">
-                <textarea class="inputv">1</textarea>
-              </div>
-            </li>
-          </ul>
+    <section id="editor">
+      <div id="leftBox">
+        <div id="listMenu">
+          <button id="newBtn">New</button>
+        </div>
+
+        <ul id="list"></ul>
+      </div>
+
+      <div id="rightBox">
+        <ul id="tab"></ul>
+        <div id="form">
+          <textarea id="textBox"></textarea>
+          <button id="saveBtn">저장</button>
         </div>
       </div>
-      <button class="new">새파일</button>
-      <button class="close">삭제</button>
-      <button class="save">저장</button>
-    </div>
-    <script>
-      const textinput = document.querySelector("textarea");
-      let notepad = new Notepad(textinput);
-    </script>
+    </section>
+    <script src="notepad.js"></script>
+    <script></script>
   </body>
 </html>
