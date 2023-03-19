@@ -5,6 +5,8 @@ const fs = require("fs").promises;
 
 const app = express();
 
+let aa;
+
 // 사용자 정보
 const users = [
   { id: "user1", pw: "111", nickname: "John" },
@@ -53,6 +55,7 @@ app.post("/user/login", (req, res) => {
   }
   // 세션에 사용자 정보 저장
   req.session.user = user;
+  console.log("ee", req.session);
 
   res.sendFile(__dirname + "/test.html");
 });
@@ -72,18 +75,27 @@ app.post("/click", (req, res) => {
 });
 
 app.post("/save", (req, res) => {
-  console.log(req.body.fileNm, req.body.content);
   const fileName = req.body.fileNm;
   const fileContent = req.body.content;
 
+  for (let i = 0; i < sessionStatus.fileList.length; i++) {
+    if (fileName === sessionStatus.fileList[i].fileName1) {
+      console.log("중복됩니다.");
+    }
+  }
+
   const newFile = {
-    fileName: fileName,
+    fileName1: fileName,
     data: fileContent,
   };
+
   sessionStatus.fileList.push(newFile);
   res.send(sessionStatus);
 
-  console.log(sessionStatus);
+  // 세션에 입력한 정보 저장
+  req.session.file = sessionStatus;
+  aa = req.session.file;
+
   // 로컬파일시스템
   fs.writeFile(`./data/${req.body.fileNm}.txt`, req.body.content)
     .then(() => {})
@@ -93,7 +105,6 @@ app.post("/save", (req, res) => {
 });
 
 app.post("/delect", (req, res) => {
-  console.log(req.body.fileNm);
   fs.unlink(`./data/${req.body.fileNm}.txt`, (err) => {
     if (err) throw err;
     console.log("File is deleted.");
@@ -101,9 +112,7 @@ app.post("/delect", (req, res) => {
 });
 
 app.post("/active", (req, res) => {
-  console.log("ee", req.body.now);
   sessionStatus.now = req.body.now;
-  console.log("dd", sessionStatus);
 });
 
 app.listen(3000);

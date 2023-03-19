@@ -58,7 +58,6 @@
         const tab = document.createElement("div");
         tab.className = "tab";
         tab.textContent = filename;
-        console.log(tab.textContent);
         tab.addEventListener("click", () => {
           content.value = "";
           if (tab !== activeTab) {
@@ -69,7 +68,6 @@
             activeTab.classList.add("active");
             clickFile = document.querySelector(".active");
             // 파일이름 (탭 선택 클릭한)
-            console.log(clickFile.innerText);
             editor.textContent = files.get(filename);
           }
           // 활성화 탭 데이터 정보
@@ -216,7 +214,6 @@
 
       saveBtn.addEventListener("click", () => {
         const filename = activeTab.textContent;
-        console.log("199", filename);
         if (filename) {
           save(filename);
         }

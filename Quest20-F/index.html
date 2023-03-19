@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <script
+      type="text/javascript"
+      src="resources/js/jquery-2.1.4.min.js"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css"
+    />
+    <title>Quest20</title>
+  </head>
+  <style>
+    body {
+      padding: 20px;
+    }
+    #play {
+      background-color: white;
+      margin-bottom: 10px;
+    }
+    .bi-caret-right-square-fill {
+      font-size: 22px;
+      line-height: 22px;
+    }
+  </style>
+
+  <body>
+    <h3>버튼을 누르면 음악이 실행됩니다.</h3>
+    <button id="play"><i class="bi bi-caret-right-square-fill"></i></button
+    ><br />
+    <audio src="sandbox/sample.mp3" controls></audio>
+  </body>
+
+  <script>
+    // AudioContext를 생성합니다.
+    const audioContext = new AudioContext();
+
+    // MasterGainNode를 생성합니다.
+    const masterGain = audioContext.createGain();
+    masterGain.gain.value = 0.5;
+    masterGain.connect(audioContext.destination);
+
+    // 노이즈를 생성하는 함수입니다.
+    function createNoiseBuffer() {
+      // 버퍼의 길이를 설정합니다. 여기서는 5초로 설정합니다.
+      const bufferSize = audioContext.sampleRate * 5;
+
+      // AudioBuffer를 생성합니다.
+      const buffer = audioContext.createBuffer(
+        1,
+        bufferSize,
+        audioContext.sampleRate
+      );
+
+      // 버퍼에 랜덤한 값을 채웁니다.
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = Math.random() * 2 - 1;
+      }
+
+      return buffer;
+    }
+
+    // 노이즈 오디오를 재생하는 함수입니다.
+    function playNoise() {
+      // 노이즈를 생성합니다.
+      const buffer = createNoiseBuffer();
+
+      // SourceNode를 생성합니다.
+      const source = audioContext.createBufferSource();
+      source.buffer = buffer;
+
+      // 재생 속도를 랜덤으로 조정합니다.
+      source.playbackRate.value = Math.random() * 2;
+
+      // MasterGainNode에 연결합니다.
+      source.connect(masterGain);
+
+      // 재생합니다.
+      source.start();
+    }
+
+    // 버튼을 클릭하면 노이즈 오디오와 음성 파일을 함께 재생합니다.
+    document.getElementById("play").addEventListener("click", function () {
+      playNoise();
+
+      // <audio> 요소를 가져와서 재생합니다.
+      const audioElement = document.querySelector("audio");
+      audioElement.play();
+    });
+  </script>
+</html>
