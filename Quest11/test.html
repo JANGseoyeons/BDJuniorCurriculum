@@ -99,6 +99,7 @@
         }
       }
 
+      // 파일 삭제
       function removeTab(filename) {
         const tab = Array.from(tabs.children).find(
           (tab) => tab.textContent === filename
@@ -140,6 +141,7 @@
           });
       }
 
+      // 저장 함수
       function save() {
         const text = editor.textContent;
         const filename = activeTab.textContent;

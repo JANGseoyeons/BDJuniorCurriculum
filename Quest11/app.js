@@ -49,37 +49,7 @@ app.get("/memo", (req, res) => {
 // body-parser 미들웨어 등록
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// app.post("/user/login", (req, res) => {
-//   // 클라이언트에서 받은 id,pw 데이터
-//   const id = req.body.userid;
-//   const pw = req.body.userpw;
-
-//   // 사용자 인증
-//   const user = users.find((u) => u.id === id && u.pw === pw);
-//   if (!user) {
-//     return res.status(401).send("아이디 또는 비밀번호가 일치하지 않습니다.");
-//   }
-//   // 세션에 사용자 정보 저장
-//   req.session.user = user;
-//   console.log("ee", req.session);
-
-//   res.sendFile(__dirname + "/test.html");
-// });
-
-app.post("/click", (req, res) => {
-  const filename = req.body.filename; // 클라이언트가 보낸 파일 이름
-  const filePath = path.join(__dirname, filename); // 로컬 파일 시스템에서 파일 경로 가져오기
-  fs.readFile(filePath, (err, data) => {
-    // 파일의 내용을 읽기
-    if (err) {
-      console.error(err);
-      return res.status(500).send("Internal Server Error");
-    }
-    res.set("Content-Type", "text/plain"); // 응답 헤더 설정
-    res.send(data); // 파일의 내용을 응답으로 보내기
-  });
-});
-
+// 파일 저장
 app.post("/save", (req, res) => {
   const fileName = req.body.fileNm;
   const fileContent = req.body.content;
@@ -106,14 +76,10 @@ app.post("/save", (req, res) => {
 });
 
 app.post("/delect", (req, res) => {
-  fs.unlink(`./data/${req.body.fileNm}.txt`, (err) => {
-    if (err) throw err;
-    console.log("File is deleted.");
+  console.log("sss", req.body);
+  fileT.destroy({
+    where: { filename: req.body.fileNm },
   });
-});
-
-app.post("/active", (req, res) => {
-  sessionStatus.now = req.body.now;
 });
 
 // 회원가입 요청
@@ -136,27 +102,24 @@ app.post("/signup", async (req, res) => {
 });
 
 // 로그인 요청
-app.post("/checkuser", (req, res) => {
+app.post("/checkuser", async (req, res) => {
   console.log("로그인", req.body.id);
 
-  userT
-    .findOne({
-      where: {
-        name: req.body.id,
-        pwd: req.body.pwd,
-      },
-    })
-    .then((user) => {
-      if (user) {
-        // console.log(user.toJSON());
-        req.session.user = { id: req.body.id };
-        res.send("true");
-      } else {
-        // console.log("User not found");
-        res.send("false");
-      }
-    })
-    .catch((error) => console.error(error));
+  const user = await userT.findOne({
+    where: { name: req.body.id },
+  });
+
+  if (!user) {
+    console.log("User not found.");
+  } else {
+    req.session.user = { id: req.body.id };
+    const passwordMatch = await bcrypt.compare(req.body.pwd, user.pwd);
+    if (passwordMatch && user.name === req.body.id) {
+      res.send("true");
+    } else {
+      res.send("false");
+    }
+  }
 });
 
 app.listen(3000);
