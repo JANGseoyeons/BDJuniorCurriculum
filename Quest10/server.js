@@ -77,6 +77,7 @@ app.post("/click", (req, res) => {
 app.post("/save", (req, res) => {
   const fileName = req.body.fileNm;
   const fileContent = req.body.content;
+  console.log("ㅋㅋ", req.session);
 
   for (let i = 0; i < sessionStatus.fileList.length; i++) {
     if (fileName === sessionStatus.fileList[i].fileName1) {
@@ -115,4 +116,4 @@ app.post("/active", (req, res) => {
   sessionStatus.now = req.body.now;
 });
 
-app.listen(3000);
+app.listen(3001);

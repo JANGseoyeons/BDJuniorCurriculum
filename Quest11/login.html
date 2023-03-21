@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h4>로그인</h4>
+    <form>
+      <label for="id">id</label>
+      <input type="text" id="id" name="id" />
+      <label for="pwd">pwd</label>
+      <input type="text" id="pwd" name="pwd" />
+      <button id="inserBtn">login</button>
+    </form>
+  </body>
+  <script>
+    $(document).ready(function () {
+      $("form").submit(function (event) {
+        // 폼 전송을 막음
+        event.preventDefault();
+
+        // 사용자로부터 입력받은 ID, PWD 가져오기
+        const id = $('input[name="id"]').val();
+        const pwd = $('input[name="pwd"]').val();
+
+        // 서버에 전송할 데이터
+        const data = {
+          id: id,
+          pwd: pwd,
+        };
+
+        // AJAX 요청 보내기
+        $.ajax({
+          type: "POST",
+          url: "/checkuser",
+          data: JSON.stringify(data),
+          contentType: "application/json",
+          success: function (result) {
+            if (result == "true") {
+              console.log("로그인성공");
+              location.href = "/memo";
+            } else if (result == "false") {
+              console.log("로그인실패");
+              alert("등록된 회원이 아닙니다.");
+            }
+          },
+          error: function (xhr, status, error) {
+            console.error("로그인 실패: ", error);
+          },
+        });
+      });
+    });
+  </script>
+</html>

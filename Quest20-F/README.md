@@ -33,7 +33,7 @@
 - ScriptProcessorNode 와 AudioWorkletNode는 어떤 기능을 하고 둘의 차이점은 무엇인가요?  
   ScriptProcessorNode는 오디오 효과 처리, 실시간 분석, 스펙트럼 분석등에 사용된다.
   AudioWorkletNode는 Web Audio API와 별도의 작업 스레드에서 실행되며, C++등의 저수준 언어로 구현된 오디오 프로세싱 코드를 사용하여 오디오 신호를 처리, 실시간 오디오 처리, 오디오 합셩에 사용된다.  
-  둘의 차이점은 ScriptProcessorNode는 비교적 덜 복잡하고 간단한 오디오 처리에 적합하며, AudioWorkletNode는 더 복잡하고 높은 성능이 필요한 오디오 처리에 적합하다.ㅇ
+  둘의 차이점은 ScriptProcessorNode는 비교적 덜 복잡하고 간단한 오디오 처리에 적합하며, AudioWorkletNode는 더 복잡하고 높은 성능이 필요한 오디오 처리에 적합하다.
 
 ## Quest
 
