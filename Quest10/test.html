@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <title>메모장</title>
     <style>
       .tab {
@@ -39,7 +40,6 @@
     <button id="add-btn">추가</button>
     <button id="remove-btn">삭제</button>
     <button id="save-btn">저장</button>
-    <button id="load-btn">불러오기</button>
 
     <script>
       const tabs = document.getElementById("tabs");
@@ -173,30 +173,6 @@
           });
       }
 
-      function load() {
-        const input = document.createElement("input");
-        input.type = "file";
-        input.accept = "text/plain";
-        input.multiple = true;
-        input.onchange = () => {
-          for (const file of input.files) {
-            const filename = file.name;
-            const reader = new FileReader();
-            reader.onload = () => {
-              files.set(filename, reader.result);
-              if (
-                !Array.from(tabs.children).some(
-                  (tab) => tab.textContent === filename
-                )
-              ) {
-                addTab(filename);
-              }
-            };
-            reader.readAsText(file);
-          }
-        };
-      }
-
       addBtn.addEventListener("click", () => {
         const filename = prompt("파일 이름:");
         if (filename && !files.has(filename)) {
@@ -219,9 +195,17 @@
         }
       });
 
-      loadBtn.addEventListener("click", () => {
-        load();
-      });
+      // 세션에 저장된 값 가져오기
+      const importPwd = () => {
+        $.ajax({
+          url: "/api/load",
+          type: "GET",
+          success: function (data) {
+            console.log(data);
+          },
+        });
+      };
+      importPwd();
     </script>
   </body>
 </html>

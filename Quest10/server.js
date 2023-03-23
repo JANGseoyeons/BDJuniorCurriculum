@@ -1,63 +1,56 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const { runInNewContext } = require("vm");
 const fs = require("fs").promises;
 
 const app = express();
 
-let aa;
+app.use(bodyParser.json());
+app.use(express.static(__dirname + "/public"));
+app.use(
+  session({
+    secret: "my-secret-key", // 세션 데이터를 암호화하기 위한 키
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
-// 사용자 정보
+// body-parser 미들웨어 등록
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// 사용자 정보(하드코딩)
 const users = [
   { id: "user1", pw: "111", nickname: "John" },
   { id: "user2", pw: "222", nickname: "Jane" },
   { id: "user3", pw: "333", nickname: "Bob" },
 ];
-// 세션 상태
-let sessionStatus = {
-  now: "",
-  fileList: [],
-};
 
-/** express-session은 클라이언트의 브라우저에 쿠키를 발행하고, 
- 그 쿠키를 통해 세션 데이터를 저장하는 방식으로 동작합니다.
- 이를 통해 사용자의 로그인 상태 등을 유지할 수 있습니다.**/
-// 세션 미들웨어 등록
-app.use(
-  session({
-    secret: "my-secret-key", // 세션 데이터를 암호화하기 위한 키
-    resave: false,
-    saveUninitialized: true,
-  })
-);
-
-app.use(express.static(__dirname + "/public"));
-
-app.use(bodyParser.json());
+app.get("/api/load", (req, res) => {
+  // res.send("ok");
+  res.send(req.session);
+});
 
 // 경로로 이동시 login 화면 출력
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/login.html");
 });
 
-// body-parser 미들웨어 등록
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.post("/user/login", (req, res) => {
+app.post("/login", (req, res) => {
   // 클라이언트에서 받은 id,pw 데이터
   const id = req.body.userid;
   const pw = req.body.userpw;
-
-  // 사용자 인증
+  // 사용자 인증(하드코딩한 사용자를 비교)
   const user = users.find((u) => u.id === id && u.pw === pw);
-  if (!user) {
-    return res.status(401).send("아이디 또는 비밀번호가 일치하지 않습니다.");
+  // 입력한 정보가 일치하면 세션에 사용자 정보를 저장한다.
+  if (user) {
+    // 세션에 사용자 정보 저장
+    req.session.user = user;
+    // res.status(200).json({ message: "Login successful", user: user });
+    res.sendFile(__dirname + "/test.html");
+  } else {
+    res.status(401).json({ message: "Invalid credentials" });
   }
-  // 세션에 사용자 정보 저장
-  req.session.user = user;
-  console.log("ee", req.session);
-
-  res.sendFile(__dirname + "/test.html");
 });
 
 app.post("/click", (req, res) => {
@@ -77,13 +70,11 @@ app.post("/click", (req, res) => {
 app.post("/save", (req, res) => {
   const fileName = req.body.fileNm;
   const fileContent = req.body.content;
-  console.log("ㅋㅋ", req.session);
 
-  for (let i = 0; i < sessionStatus.fileList.length; i++) {
-    if (fileName === sessionStatus.fileList[i].fileName1) {
-      console.log("중복됩니다.");
-    }
-  }
+  let sessionStatus = {
+    now: "",
+    fileList: [],
+  };
 
   const newFile = {
     fileName1: fileName,
@@ -95,14 +86,7 @@ app.post("/save", (req, res) => {
 
   // 세션에 입력한 정보 저장
   req.session.file = sessionStatus;
-  aa = req.session.file;
-
-  // 로컬파일시스템
-  fs.writeFile(`./data/${req.body.fileNm}.txt`, req.body.content)
-    .then(() => {})
-    .catch((err) => {
-      throw err;
-    });
+  req.session.save();
 });
 
 app.post("/delect", (req, res) => {
@@ -113,7 +97,8 @@ app.post("/delect", (req, res) => {
 });
 
 app.post("/active", (req, res) => {
-  sessionStatus.now = req.body.now;
+  // req.session.file.now = req.body.now;
+  req.session.save();
 });
 
-app.listen(3001);
+app.listen(3000);

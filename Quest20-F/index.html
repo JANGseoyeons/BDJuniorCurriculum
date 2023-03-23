@@ -42,65 +42,43 @@
   <body>
     <h3>버튼을 누르면 음악이 실행됩니다.</h3>
     <button id="play"><i class="bi bi-caret-right-square-fill"></i></button></br>
-    <audio src="sandbox/sample.mp3" controls></audio>
   </body>
-
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script>
+
     // AudioContext를 생성합니다.
     const audioContext = new AudioContext();
 
-    // MasterGainNode를 생성합니다.
-    const masterGain = audioContext.createGain();
-    masterGain.gain.value = 0.5;
-    masterGain.connect(audioContext.destination);
+    // 오디오 실행함수
+    const startAudio = async (context) => {
+      // AudioWorkletNode 사용하기 위해 noise-generator.js 사용
+      await context.audioWorklet.addModule('noise-generator.js');
+      // 전기적으로 진동 생성
+      const modulator = new OscillatorNode(context);
+      // 음원 볼륨 
+      const modGain = new GainNode(context);
+      // AudioWorkletNode 사용
+      const noiseGenerator = new AudioWorkletNode(context, 'noise-generator');
+      noiseGenerator.connect(context.destination);
 
-    // 노이즈를 생성하는 함수입니다.
-    function createNoiseBuffer() {
-      // 버퍼의 길이를 설정합니다. 여기서는 5초로 설정합니다.
-      const bufferSize = audioContext.sampleRate * 5;
+      const paramAmp = noiseGenerator.parameters.get('amplitude');
+      modulator.connect(modGain).connect(paramAmp);
 
-      // AudioBuffer를 생성합니다.
-      const buffer = audioContext.createBuffer(
-        1,
-        bufferSize,
-        audioContext.sampleRate
-      );
-
-      // 버퍼에 랜덤한 값을 채웁니다.
-      const data = buffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i++) {
-        data[i] = Math.random() * 2 - 1;
-      }
-
-      return buffer;
+      modulator.frequency.value = 0.5;
+      modGain.gain.value = 0.75;
+      modulator.start();
     }
 
-    // 노이즈 오디오를 재생하는 함수입니다.
-    function playNoise() {
-      // 노이즈를 생성합니다.
-      const buffer = createNoiseBuffer();
-
-      // SourceNode를 생성합니다.
-      const source = audioContext.createBufferSource();
-      source.buffer = buffer;
-
-      // 재생 속도를 랜덤으로 조정합니다.
-      source.playbackRate.value = Math.random() * 2;
-
-      // MasterGainNode에 연결합니다.
-      source.connect(masterGain);
-
-      // 재생합니다.
-      source.start();
-    }
-
-    // 버튼을 클릭하면 노이즈 오디오와 음성 파일을 함께 재생합니다.
-    document.getElementById("play").addEventListener("click", function () {
-      playNoise();
-
-      // <audio> 요소를 가져와서 재생합니다.
-      const audioElement = document.querySelector("audio");
-      audioElement.play();
+    window.addEventListener('load', async () => {
+      const play = document.getElementById('play');
+      play.disabled = false;
+      play.addEventListener('click', async () => {
+        await startAudio(audioContext);
+        audioContext.resume();
+        play.disabled = true;
+        play.textContent = 'Playing....';
+      }, false);
     });
+
   </script>
 </html>
