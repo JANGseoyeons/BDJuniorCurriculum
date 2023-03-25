@@ -59,6 +59,14 @@
       const modGain = new GainNode(context);
       // AudioWorkletNode 사용
       const noiseGenerator = new AudioWorkletNode(context, 'noise-generator');
+
+       // 음악 재생 
+      const response = await fetch('./sandbox/sample.mp3');
+      const arrayBuffer = await response.arrayBuffer();
+      const audioBuffer = await context.decodeAudioData(arrayBuffer);
+      const musicSource = new AudioBufferSourceNode(context, { buffer: audioBuffer });
+
+      musicSource.connect(context.destination);
       noiseGenerator.connect(context.destination);
 
       const paramAmp = noiseGenerator.parameters.get('amplitude');
@@ -67,13 +75,14 @@
       modulator.frequency.value = 0.5;
       modGain.gain.value = 0.75;
       modulator.start();
+      musicSource.start();
     }
 
-    window.addEventListener('load', async () => {
+    window.addEventListener('load', () => {
       const play = document.getElementById('play');
       play.disabled = false;
-      play.addEventListener('click', async () => {
-        await startAudio(audioContext);
+      play.addEventListener('click', () => {
+       startAudio(audioContext);
         audioContext.resume();
         play.disabled = true;
         play.textContent = 'Playing....';
