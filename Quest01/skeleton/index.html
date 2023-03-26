@@ -1,110 +1,363 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>NAVER</title>
-		<link rel="stylesheet" href="/BDJuniorCurriculum/Quest01/skeleton/Naver.css">
-		<title>NAVER</title>
-		<!-- TODO: 또 무엇이 필요할까요? -->
-	</head>
-	<body>
-		<header>
-			<div class="nav1">
-			<!-- TODO: 어디까지를 header로 보는 것이 좋을까요? -->
-				<!-- 햄버거 메뉴-->
-				<a class="menu-trigger" href="#">
-					<span></span>
-					<span></span>
-					<span></span>
-				</a>
-				<div class="btn">
-				<button>QR체크인</button>
-				<button>pay</button>
-				<button>서랍</button>
-				</div>
-			</div>
-			<div class="nav2">
-			<h1>NAVER</h1>
-			<input placeholder="검색어를 입력해주세요."/>
-				<ul class="menu">
-					<li class="menu1">뉴스판</li>
-					<li class="menu1">경제표지판</li>
-					<li class="menu1">연예판</li>
-					<li class="menu1">트렌트판</li>
-					<li class="menu1">메일</li>
-					<li class="menu1">카페</li>
-					<li class="menu1">블로그</li>
-					<li class="menu1">...</li>
-				</ul>
-			</div>
-		</header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NAVER</title>
+    <link
+      rel="stylesheet"
+      href="/BDJuniorCurriculum/Quest01/skeleton/Naver.css"
+    />
+    <title>NAVER</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      html,
+      body {
+        height: 1080px;
+        background-color: #faf8f8;
+      }
+      header {
+        width: 100%;
+        height: 30%;
+        margin-bottom: 70px;
+        background-color: white;
+      }
+      section {
+        width: 100%;
+        height: 60%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+      footer {
+        display: flex;
+        width: 100%;
+        height: 10%;
+      }
+      .nav1 {
+        /* border: 1px solid black; */
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+      }
+      a {
+        margin-top: 20px;
+        margin-left: 10px;
+      }
+      span {
+        border-top: 1px solid black;
+        padding: 2px;
+        display: block;
+        width: 10px;
+      }
+      .btn {
+        margin-top: 10px;
+        height: 30px;
+      }
+      .nav2 {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+      h1 {
+        width: 500px;
+        color: #369f36;
+        font-size: 50px;
+        text-align: center;
+      }
+      input {
+        border: 1px solid #369f36;
+        width: 500px;
+        height: 40px;
+      }
+      .menu {
+        width: 500px;
+      }
+      .menu {
+        width: 500px;
+        list-style: none;
+        display: grid;
+        padding: 0px 40px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+      .menu1 {
+        font-size: 8px;
+        text-align: center;
+        border: 1px solid black;
+        width: 50px;
+        height: 40px;
+        margin: 20px;
+        border-radius: 30%;
+      }
+      img {
+        width: 30px;
+        height: 30px;
+      }
+      .weathercard {
+        margin-bottom: 10px;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        width: 500px;
+        height: 60px;
+        border-radius: 10px 10px 0px 0px;
+      }
+      .weathercard1 {
+        width: 500px;
+        height: 200px;
+        background-color: white;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+      .btnmenu {
+        display: flex;
+      }
+      p {
+        margin: 10px;
+        font-size: 12px;
+      }
+      p strong {
+        font-size: 15px;
+      }
+      .btnmenu li {
+        font-size: 10px;
+        list-style: none;
+        padding: 5px;
+        margin: 10px;
+        background-color: #e4e2e2;
+      }
+      .covid {
+        background-color: white;
+        width: 500px;
+        height: 60px;
+        display: flex;
+        margin: 10px;
+      }
+      .covid a {
+        margin: 10px;
+        text-decoration: none;
+        font-size: 15px;
+        color: black;
+        background-color: white;
+        width: 100%;
+      }
+      .korea {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        width: 500px;
+        height: 50px;
+        margin-bottom: 10px;
+      }
+      .grid1 {
+        display: flex;
+        justify-content: center;
+        padding-top: 20px;
+        background-color: white;
+        width: 500px;
+        height: 60px;
+        font-size: 10px;
+        margin-bottom: 10px;
+      }
+      .grid1 img {
+        border-radius: 5px;
+      }
+      .grid1 p {
+        padding-right: 70px;
+      }
+      .grid1 button {
+        background-color: white;
+        border: 1px solid blue;
+        font-size: 12px;
+        color: blue;
+        width: 70px;
+        height: 30px;
+      }
+      .grid2 {
+        background-color: white;
+        width: 500px;
+        height: 50px;
+        margin-bottom: 10px;
+      }
+      .grid2 p {
+        font-size: 13px;
+        font-weight: bold;
+        margin: 15px;
+      }
+      .cp {
+        background-color: white;
+        width: 500px;
+        height: 200px;
+        margin-bottom: 10px;
+      }
+      .cp1 {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+      }
+      .cp1 button {
+        margin: 10px;
+        width: 40px;
+        height: 20px;
+      }
+      .cp2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .cp2 button {
+        text-align: left;
+        height: 30px;
+        margin: 5px;
+      }
+      .info2 {
+        background-color: white;
+        width: 500px;
+        height: 40px;
+        display: flex;
+        margin-bottom: 30px;
+      }
+      .info2 .icon {
+        border-radius: 5px;
+        color: #369f36;
+        border: 1px solid green;
+        font-weight: bold;
+        font-size: 10px;
+      }
+      footer {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+      footer ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      footer li {
+        list-style: none;
+        width: 100px;
+        font-size: 10px;
+      }
+      footer p {
+        font-size: 20px;
+        color: #e4e2e2;
+      }
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+    </style>
+    <!-- TODO: 또 무엇이 필요할까요? -->
+  </head>
+  <body>
+    <header>
+      <div class="nav1">
+        <!-- TODO: 어디까지를 header로 보는 것이 좋을까요? -->
+        <!-- 햄버거 메뉴-->
+        <a class="menu-trigger" href="#">
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+        <div class="btn">
+          <button>QR체크인</button>
+          <button>pay</button>
+          <button>서랍</button>
+        </div>
+      </div>
+      <div class="nav2">
+        <h1>NAVER</h1>
+        <input placeholder="검색어를 입력해주세요." />
+        <ul class="menu">
+          <li class="menu1">뉴스판</li>
+          <li class="menu1">경제표지판</li>
+          <li class="menu1">연예판</li>
+          <li class="menu1">트렌트판</li>
+          <li class="menu1">메일</li>
+          <li class="menu1">카페</li>
+          <li class="menu1">블로그</li>
+          <li class="menu1">...</li>
+        </ul>
+      </div>
+    </header>
 
-		<section class="main">
-			<!-- TODO: main은 어떤 식으로 나눌 수 있을까요? -->
-			<div class="weathercard">
-				<img alt="moon" src="https://i.pinimg.com/originals/fe/5d/c7/fe5dc71b83a94846317f58b2514fa9f7.png"/>
-				<div class="info">
-				<p style="font-size: 15px;">10 맑음</p>
-				<p style="font-size: 10px;">어제보다 2 높아요</p>
-				</div>
-			</div>
-			<div class="weathercard1">
-				<p> <strong tyle="font-size: 15px;" >날씨</strong> 서울시 잠실동</p>
-				<ul class="btnmenu">
-					<li>시간대별 날씨</li>
-					<li>시간대별 미세먼지</li>
-					<li>주간 날씨</li>
-					<li>주간 미세먼지</li>
-				</ul>
-			</div>
-			<div class="covid">
-				<a href="#">코로나19<br/>국내외 확진 현황</a>
-				<a href="#">코로나19 팩트체크<br/>백신 정보 팩트는?</a>
-			</div>
-			<div class="korea">
-				<img src="https://w7.pngwing.com/pngs/872/555/png-transparent-chocolate-fountain-government-building-government-building-building-wedding-public-sector.png" alt="">
-				<p>제102주년 <strong>대한민국 임시정부 수립일</strong></p>
-			</div>
-			<div class="grid1">
-				<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAeFBMVEUAxzz///8AxjcAxCZQ0Gjc9N/m9+jR8dbQ9Ntp2YMAxjgAxCwAxTAAxTP7//3p+Osfy01R1HC068Hx/PTL8tVIz2O77cfF7ct/3pXX9d8Awx+L4aA70F+Y5KlJ0mqn6LcszVWh5rB024yH4Jtg2oBa1Xau6bwozVMQgS/cAAACxklEQVR4nO3c7W7aQBBG4Vm7QPGabwqBkBSSpr3/O6yUKi0EbK8NjTKvzvPbWnHixWInks0AAAAAAAAAAAAAAAAAAAAAAAAAQEORJ4kJS8WbrXRLxbdFP8FknjcuFVeTlJXWH5yYfQlphmXTUvnXpIV6zX+rm0ouHE+LhqW8F4Zl0010XxjuGhL9FzbtU/+FYbOtXUqgMNzXPugVCsMuq1lKonAzqllKojA81OxTjcLwWH0XRQr78oXhe+UHVCkMs6q7KFM4sYqfNjKFYV7xPNUprDoqChUuLu9TocKwuvgTXKkwPF3ap1KFF4+KUoVheeF5qlUY7s4TxQrH+7Ojolhh2JzdRLXC85GGXOHZSEOvsPfuJuoVhsNpomDhu6OiYmE/O/5po1h4OtKQLDzZp5qFx0dFzcLjkYZo4dFIQ7Xw3z5VLQzrt08sW/h3pKFb+DbS0C0My1y9MDxH9cLx61FRuTBsSvXC15GGdmHYZ+qF/VK9MByiemGYbdUL+87v4aT5ksPSdeGPRfM1CZd85sKXtOv8Fg63P9ULS0v4KrouHI0e1QstP6gXWt5XL8x26oUWH9QLrdyoF2a7sXihxWf1wtRjruPCwq7dp5+90Mon9UKLa/XCYpp2DvRbaOVQvdDyuXphMbpmn3ootNE1Iw0XhRavGGn4KCyy7kdFH4U2mqkXXjHS8FJoses+dVPYeaThptDivXqhld2Oio4KO440HBV2HGl4KrRt2n8MHRd2Gmm4Kuw00vBVaHGlXthhpOGssMNIw1th+5GGu8Iia7lP3RW2Pir6K2x7VHRYWBStjooOC1vuU4+FFg/qhRZ76oXZL/XCNiMNp4UtRhpeC7N96lHRa6HFO/VCyxNHGh9dWOx6gwSbl7r3ev5ZaZqy0GBQ9TK0/ybxjeWNgTd99zkAAAAAAAAAAAAAAAAAAAAAAAAACb8BlaxF0SY61+4AAAAASUVORK5CYII=" alt="">
-				<p>앱으로 새로운 네이버를 더 쾌적하게 사용해 보세요</p>
-				<button>앱 사용하기</button>
-			</div>
-			<div class="grid2">
-				<p>웹툰</p>
-			</div>
-			<div class="cp">
-				<div class="cp1">
-				<p>인기 주제 판을 확인해 보세요!</p>
-				<button>판 관리</button>
-				</div>
-				<div class="cp2">
-					<button>영화관</button>
-					<button>뿜판</button>
-					<button>웹툰판</button>
-					<button>경제M판</button>
-				</div>
-			</div>
-			<div class="info2">
-				<p class="icon">알립니다</p>
-				<p>네이버앱 업데이트 사전 안내</p>
-			</div>
+    <section class="main">
+      <!-- TODO: main은 어떤 식으로 나눌 수 있을까요? -->
+      <div class="weathercard">
+        <img
+          alt="moon"
+          src="https://i.pinimg.com/originals/fe/5d/c7/fe5dc71b83a94846317f58b2514fa9f7.png"
+        />
+        <div class="info">
+          <p style="font-size: 15px">10 맑음</p>
+          <p style="font-size: 10px">어제보다 2 높아요</p>
+        </div>
+      </div>
+      <div class="weathercard1">
+        <p><strong tyle="font-size: 15px;">날씨</strong> 서울시 잠실동</p>
+        <ul class="btnmenu">
+          <li>시간대별 날씨</li>
+          <li>시간대별 미세먼지</li>
+          <li>주간 날씨</li>
+          <li>주간 미세먼지</li>
+        </ul>
+      </div>
+      <div class="covid">
+        <a href="#">코로나19<br />국내외 확진 현황</a>
+        <a href="#">코로나19 팩트체크<br />백신 정보 팩트는?</a>
+      </div>
+      <div class="korea">
+        <img
+          src="https://w7.pngwing.com/pngs/872/555/png-transparent-chocolate-fountain-government-building-government-building-building-wedding-public-sector.png"
+          alt=""
+        />
+        <p>제102주년 <strong>대한민국 임시정부 수립일</strong></p>
+      </div>
+      <div class="grid1">
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAeFBMVEUAxzz///8AxjcAxCZQ0Gjc9N/m9+jR8dbQ9Ntp2YMAxjgAxCwAxTAAxTP7//3p+Osfy01R1HC068Hx/PTL8tVIz2O77cfF7ct/3pXX9d8Awx+L4aA70F+Y5KlJ0mqn6LcszVWh5rB024yH4Jtg2oBa1Xau6bwozVMQgS/cAAACxklEQVR4nO3c7W7aQBBG4Vm7QPGabwqBkBSSpr3/O6yUKi0EbK8NjTKvzvPbWnHixWInks0AAAAAAAAAAAAAAAAAAAAAAAAAQEORJ4kJS8WbrXRLxbdFP8FknjcuFVeTlJXWH5yYfQlphmXTUvnXpIV6zX+rm0ouHE+LhqW8F4Zl0010XxjuGhL9FzbtU/+FYbOtXUqgMNzXPugVCsMuq1lKonAzqllKojA81OxTjcLwWH0XRQr78oXhe+UHVCkMs6q7KFM4sYqfNjKFYV7xPNUprDoqChUuLu9TocKwuvgTXKkwPF3ap1KFF4+KUoVheeF5qlUY7s4TxQrH+7Ojolhh2JzdRLXC85GGXOHZSEOvsPfuJuoVhsNpomDhu6OiYmE/O/5po1h4OtKQLDzZp5qFx0dFzcLjkYZo4dFIQ7Xw3z5VLQzrt08sW/h3pKFb+DbS0C0My1y9MDxH9cLx61FRuTBsSvXC15GGdmHYZ+qF/VK9MByiemGYbdUL+87v4aT5ksPSdeGPRfM1CZd85sKXtOv8Fg63P9ULS0v4KrouHI0e1QstP6gXWt5XL8x26oUWH9QLrdyoF2a7sXihxWf1wtRjruPCwq7dp5+90Mon9UKLa/XCYpp2DvRbaOVQvdDyuXphMbpmn3ootNE1Iw0XhRavGGn4KCyy7kdFH4U2mqkXXjHS8FJoses+dVPYeaThptDivXqhld2Oio4KO440HBV2HGl4KrRt2n8MHRd2Gmm4Kuw00vBVaHGlXthhpOGssMNIw1th+5GGu8Iia7lP3RW2Pir6K2x7VHRYWBStjooOC1vuU4+FFg/qhRZ76oXZL/XCNiMNp4UtRhpeC7N96lHRa6HFO/VCyxNHGh9dWOx6gwSbl7r3ev5ZaZqy0GBQ9TK0/ybxjeWNgTd99zkAAAAAAAAAAAAAAAAAAAAAAAAACb8BlaxF0SY61+4AAAAASUVORK5CYII="
+          alt=""
+        />
+        <p>앱으로 새로운 네이버를 더 쾌적하게 사용해 보세요</p>
+        <button>앱 사용하기</button>
+      </div>
+      <div class="grid2">
+        <p>웹툰</p>
+      </div>
+      <div class="cp">
+        <div class="cp1">
+          <p>인기 주제 판을 확인해 보세요!</p>
+          <button>판 관리</button>
+        </div>
+        <div class="cp2">
+          <button>영화관</button>
+          <button>뿜판</button>
+          <button>웹툰판</button>
+          <button>경제M판</button>
+        </div>
+      </div>
+      <div class="info2">
+        <p class="icon">알립니다</p>
+        <p>네이버앱 업데이트 사전 안내</p>
+      </div>
+    </section>
 
-		</section>
-
-		<footer>
-			<!-- TODO: 하단의 여러 가지 링크들은 어떻게 처리하면 좋을까요? -->
-			<ul>
-				<li><a href="#">로그인|</a></li>
-				<li><a href="#">전체서비스|</a></li>
-				<li><a href="#">PC버전|</a></li>
-				<li><a href="#">이용약관|</a></li>
-				<li><a href="#">개인정보처리방침|</a></li>
-				<li><a href="#">고객센터</a></li>
-			</ul>
-			<p>NAVER</p>
-		</footer>
-	</body>
+    <footer>
+      <!-- TODO: 하단의 여러 가지 링크들은 어떻게 처리하면 좋을까요? -->
+      <ul>
+        <li><a href="#">로그인|</a></li>
+        <li><a href="#">전체서비스|</a></li>
+        <li><a href="#">PC버전|</a></li>
+        <li><a href="#">이용약관|</a></li>
+        <li><a href="#">개인정보처리방침|</a></li>
+        <li><a href="#">고객센터</a></li>
+      </ul>
+      <p>NAVER</p>
+    </footer>
+  </body>
 </html>

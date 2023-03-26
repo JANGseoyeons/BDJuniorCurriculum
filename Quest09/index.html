@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>메모장</title>
+    <style>
+      .tab {
+        display: inline-block;
+        padding: 4px 8px;
+        background-color: #ccc;
+        border: 1px solid #999;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        cursor: pointer;
+      }
+      .tab.active {
+        background-color: #fff;
+        border-bottom-color: #fff;
+      }
+      .tab:hover {
+        background-color: #ddd;
+      }
+      .tab-content {
+        border: 1px solid #999;
+        padding: 0px;
+        height: 300px;
+        width: 400px;
+      }
+      textarea {
+        margin: 0;
+        height: 300px;
+        width: 350px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="tabs"></div>
+    <textarea class="tab-content" id="editor"></textarea>
+    <button id="add-btn">새 파일</button>
+    <button id="remove-btn">삭제</button>
+    <button id="save-btn">저장</button>
+
+    <script>
+      const tabs = document.getElementById("tabs");
+      const editor = document.getElementById("editor");
+      const addBtn = document.getElementById("add-btn");
+      const removeBtn = document.getElementById("remove-btn");
+      const saveBtn = document.getElementById("save-btn");
+      const loadBtn = document.getElementById("load-btn");
+
+      let activeTab = null;
+      const files = new Map();
+      let clickFile;
+      let content = document.querySelector("#editor");
+
+      function addTab(filename) {
+        const tab = document.createElement("div");
+        tab.className = "tab";
+        tab.textContent = filename;
+        tab.addEventListener("click", () => {
+          content.value = "";
+          if (tab !== activeTab) {
+            if (activeTab) {
+              activeTab.classList.remove("active");
+            }
+            activeTab = tab;
+            activeTab.classList.add("active");
+            clickFile = document.querySelector(".active");
+            // 파일이름 (탭 선택 클릭한)
+            editor.textContent = files.get(filename);
+          }
+          // 활성화 탭 데이터 정보
+          let fileData = {
+            method: "POST",
+            body: JSON.stringify({
+              now: clickFile.innerText,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          };
+          fetch(`/active`, fileData)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network resposne was not ok");
+              }
+              return response.json();
+            })
+            .then((data) => {})
+            .catch((err) => {
+              console.error("Error:", error);
+            });
+        });
+        tabs.appendChild(tab);
+        if (!activeTab) {
+          activeTab = tab;
+          activeTab.classList.add("active");
+        }
+      }
+
+      function removeTab(filename) {
+        const tab = Array.from(tabs.children).find(
+          (tab) => tab.textContent === filename
+        );
+        let activeT = document.querySelector(".active");
+        if (tab) {
+          tabs.removeChild(tab);
+          files.delete(filename);
+          if (tab === activeTab) {
+            activeTab = tabs.firstChild;
+            if (activeTab) {
+              activeTab.classList.add("active");
+              editor.textContent = files.get(activeTab.textContent);
+            } else {
+              editor.textContent = "";
+            }
+          }
+        }
+        let fileData = {
+          method: "POST",
+          body: JSON.stringify({
+            fileNm: activeT.innerText,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        fetch("/delect", fileData)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network resposne was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            alert("삭제가 되었습니다.");
+          })
+          .catch((err) => {
+            console.error("Error:", error);
+          });
+      }
+
+      function save() {
+        const text = editor.textContent;
+        const filename = activeTab.textContent;
+        const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+        let activeT = document.querySelector(".active");
+
+        let fileData = {
+          method: "POST",
+          body: JSON.stringify({
+            fileNm: activeT.innerText,
+            content: editor.value,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        fetch(`/save`, fileData)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network resposne was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            alert("저장이 완료되었습니다.");
+          })
+          .catch((err) => {
+            console.error("Error:", error);
+          });
+      }
+
+      addBtn.addEventListener("click", () => {
+        const filename = prompt("파일 이름:");
+        if (filename && !files.has(filename)) {
+          files.set(filename, "");
+          addTab(filename);
+        }
+      });
+
+      removeBtn.addEventListener("click", () => {
+        const filename = activeTab.textContent;
+        if (filename && confirm(`"${filename}" 파일을 삭제하시겠습니까?`)) {
+          removeTab(filename);
+        }
+      });
+
+      saveBtn.addEventListener("click", () => {
+        const filename = activeTab.textContent;
+        if (filename) {
+          save(filename);
+        }
+      });
+    </script>
+  </body>
+</html>

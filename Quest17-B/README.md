@@ -7,6 +7,7 @@
 ## Topics
 
 - Continuous Integration
+
 - Continuous Delivery
 
 ## Resources
