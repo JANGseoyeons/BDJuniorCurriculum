@@ -68,6 +68,7 @@ app.post("/click", (req, res) => {
 });
 
 app.post("/save", (req, res) => {
+  console.log("user", req.session.user);
   const fileName = req.body.fileNm;
   const fileContent = req.body.content;
 
@@ -85,7 +86,8 @@ app.post("/save", (req, res) => {
   res.send(sessionStatus);
 
   // 세션에 입력한 정보 저장
-  req.session.file = sessionStatus;
+  let file = "file" + req.session.user.id;
+  req.session[file] = sessionStatus;
   req.session.save();
 });
 

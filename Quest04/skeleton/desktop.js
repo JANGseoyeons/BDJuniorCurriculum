@@ -87,7 +87,7 @@ class Folder extends Icon {
 
 class Window {
   /* TODO: Window 클래스는 어떤 멤버함수와 멤버변수를 가져야 할까요? */
-  // 아이콘과 폴더 갯수를 받아 그 갯수 만큼 출력 코드
+  // 아이콘과 폴더 갯ㅅ수를 받아 그 갯수 만큼 출력 코드 (인풋창 사용)
   constructor() {
     this.input1 = document.createElement("input");
     this.input2 = document.createElement("input");
@@ -101,6 +101,7 @@ class Window {
     this.d2 = document.querySelector(".FolderInput");
     btn.addEventListener("click", this.post.bind(this));
   }
+  // 반복문을 이용해 아이콘과 폴더를 생성 (id명을 파라미터로 받음) vs 파라미터를 id명이 아닌 갯수를 받는 것이 효율적인지
   post() {
     for (let i = 0; i < this.input1.value; i++) {
       let myIcon = new Icon("Icon");
