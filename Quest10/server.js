@@ -42,6 +42,7 @@ app.post("/login", (req, res) => {
   const pw = req.body.userpw;
   // 사용자 인증(하드코딩한 사용자를 비교)
   const user = users.find((u) => u.id === id && u.pw === pw);
+  console.log("ddddd", id);
   // 입력한 정보가 일치하면 세션에 사용자 정보를 저장한다.
   if (user) {
     // 세션에 사용자 정보 저장
