@@ -42,7 +42,6 @@ app.post("/login", (req, res) => {
   const pw = req.body.userpw;
   // 사용자 인증(하드코딩한 사용자를 비교)
   const user = users.find((u) => u.id === id && u.pw === pw);
-
   // 입력한 정보가 일치하면 세션에 사용자 정보를 저장한다.
   if (user) {
     // 세션에 사용자 정보 저장
@@ -52,12 +51,6 @@ app.post("/login", (req, res) => {
   } else {
     res.status(401).json({ message: "Invalid credentials" });
   }
-  let data = req.session;
-  console.log(data);
-  const targetKey = "file-" + data.user.id;
-  const result = targetKey.substring(targetKey.indexOf("-") + 1);
-  // console.log(req.session[targetKey].fileList);
-  console.log(data["file-" + result]);
 });
 
 app.post("/click", (req, res) => {
