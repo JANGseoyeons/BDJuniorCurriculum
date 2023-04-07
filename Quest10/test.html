@@ -144,11 +144,13 @@
         const text = editor.textContent;
         const filename = activeTab.textContent;
         const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+        let activeT = document.querySelector(".active");
+
         let fileData = {
           method: "POST",
           body: JSON.stringify({
-            fileNm: clickFile.innerText,
-            content: content.value,
+            fileNm: activeT.innerText,
+            content: editor.value,
           }),
           headers: {
             "Content-Type": "application/json",
@@ -198,6 +200,13 @@
           type: "GET",
           success: function (data) {
             console.log(data);
+            // userid와 동일한 file-'' 값을 가지고 있는 키 값을 가져옴
+            const keys = Object.keys(data).filter((key) =>
+              key.includes(data.user.id)
+            );
+            // 해당하는 키의 값을 가져옴
+            const values = keys.map((key) => data[key]);
+            console.log(values);
           },
         });
       };

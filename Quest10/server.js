@@ -51,6 +51,12 @@ app.post("/login", (req, res) => {
   } else {
     res.status(401).json({ message: "Invalid credentials" });
   }
+  let data = req.session;
+  console.log(data);
+  const targetKey = "file-" + data.user.id;
+  const result = targetKey.substring(targetKey.indexOf("-") + 1);
+  // console.log(req.session[targetKey].fileList);
+  console.log(data["file-" + result]);
 });
 
 app.post("/click", (req, res) => {
@@ -86,7 +92,7 @@ app.post("/save", (req, res) => {
   res.send(sessionStatus);
 
   // 세션에 입력한 정보 저장
-  let file = "file" + req.session.user.id;
+  let file = "file-" + req.session.user.id;
   req.session[file] = sessionStatus;
   req.session.save();
 });
