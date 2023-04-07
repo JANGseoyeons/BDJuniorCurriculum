@@ -1,5 +1,5 @@
 const express = require("express");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 // jwt 라이브러리
 const jwt = require("jsonwebtoken");
 // env환경변수 라이브러리
@@ -10,11 +10,12 @@ const { auth } = require("./authMiddleware.js");
 const app = express();
 // 환경변수 사용선언
 dotenv.config();
-app.use(bodyParser.json());
-// app.use(express.json());
+// app.use(bodyParser.json());
+app.use(express.json());
 
 // body-parser 미들웨어 등록
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 
 // 사용자 정보(하드코딩)
 const users = [
@@ -33,6 +34,7 @@ app.get("/memo", (req, res) => {
 
 // post login요청이 들어오면 body에 id와 pwd를 실어서 요청으로 jwt를 발급
 app.post("/login", (req, res) => {
+  console.log(req.body);
   const key = process.env.SECRET_KEY;
   // 받은 요청에서 db의 데이터를 가져온다. (로그인 정보)
   let id = req.body.userid;
