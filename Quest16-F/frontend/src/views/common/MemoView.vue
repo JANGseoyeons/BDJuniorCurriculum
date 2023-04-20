@@ -5,13 +5,15 @@
       <div id="tabs" v-for="tab in tabList" v-bind:key="tab">{{ tab }}</div>
       <textarea v-model="content" class="tab-content" id="editor"></textarea>
       <button v-on:click="addTab" id="add-btn">추가</button>
-      <button id="remove-btn">삭제</button>
+      <button v-on:click="deleteBtn" id="remove-btn">삭제</button>
       <button v-on:click="addBtn" id="save-btn">저장</button>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data: function () {
     return {
@@ -28,6 +30,17 @@ export default {
       // 로컬스토리지에 입력한 텍스트에 저장
       localStorage.setItem(this.tabNm, this.content);
       this.content = ""; // 비워주기(초기화)
+    },
+    deleteBtn: function () {
+      axios({
+        url: "http://localhost:3000/test",
+        method: "POST",
+        data: {
+          content: this.content,
+        },
+      }).then((res) => {
+        alert(res.data);
+      });
     },
   },
 };
