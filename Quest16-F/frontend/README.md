@@ -1,4 +1,4 @@
-# memopro
+# frontend
 
 ## Project setup
 ```
