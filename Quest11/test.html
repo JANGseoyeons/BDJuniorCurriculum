@@ -146,6 +146,7 @@
         const text = editor.textContent;
         const filename = activeTab.textContent;
         const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+        let activeT = document.querySelector(".active");
         // saveAs(blob, filename);
         // let a = document.querySelector(".tab active");
         // console.log(a.innerText);
@@ -153,8 +154,8 @@
         let fileData = {
           method: "POST",
           body: JSON.stringify({
-            fileNm: clickFile.innerText,
-            content: content.value,
+            fileNm: activeT.innerText,
+            content: editor.value,
           }),
           headers: {
             "Content-Type": "application/json",
