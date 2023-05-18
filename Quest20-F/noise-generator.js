@@ -23,8 +23,6 @@ class NoiseGenerator extends AudioWorkletProcessor {
     for (let channel = 0; channel < output.length; ++channel) {
       const outputChannel = output[channel];
       for (let i = 0; i < outputChannel.length; ++i) {
-        // This loop can branch out based on AudioParam array length, but
-        // here we took a simple approach for the demonstration purpose.
         outputChannel[i] =
           2 *
           (Math.random() - 0.5) *
