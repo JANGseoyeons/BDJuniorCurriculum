@@ -2,10 +2,21 @@
   <div>
     <div>
       <h3>메모장 화면입니다.</h3>
-      <div id="tabs" v-for="tab in tabList" v-bind:key="tab">{{ tab }}</div>
+      <div class="tabs">
+        <div
+          v-for="(tabNm, index) in tabs"
+          :key="index"
+          @click="selectTab(tabNm.name)"
+          class="tab"
+        >
+          {{ tabNm.name }}
+        </div>
+      </div>
       <textarea v-model="content" class="tab-content" id="editor"></textarea>
-      <button v-on:click="addTab" id="add-btn">추가</button>
-      <button v-on:click="deleteBtn" id="remove-btn">삭제</button>
+      <button v-on:click="openPrompt" id="add-btn">추가</button>
+      <button v-on:click="deleteBtn(this.selectedTab)" id="remove-btn">
+        삭제
+      </button>
       <button v-on:click="addBtn" id="save-btn">저장</button>
     </div>
   </div>
@@ -19,34 +30,47 @@ export default {
     return {
       content: "",
       tabNm: "",
+      tabs: [],
+      selectedTab: null,
     };
   },
   methods: {
-    addTab: function () {
-      console.log(this.content);
+    openPrompt() {
       this.tabNm = prompt("파일명을 입력해주세요.");
+      this.addTab(this.tabNm);
     },
-    addBtn: function () {
+    // file명과 file내용을 post로 요청
+    addTab(fileName) {
+      if (fileName !== "") {
+        this.tabs.push({ name: fileName });
+        fileName = "";
+      }
+    },
+    // 클릭한 탭 선정 함수
+    selectTab(fileNm) {
+      this.selectedTab = fileNm;
+      console.log(fileNm);
+      //  this.addBtn(fileNm);
+    },
+    addBtn(fileNm) {
       // 로컬스토리지에 입력한 텍스트에 저장
+      console.log(fileNm);
+      // localStorage.setItem(fileNm, this.content);
       localStorage.setItem(this.tabNm, this.content);
       this.content = ""; // 비워주기(초기화)
     },
-    deleteBtn: function () {
-      axios({
-        url: "http://localhost:3000/test",
-        method: "POST",
-        data: {
-          content: this.content,
-        },
-      }).then((res) => {
-        alert(res.data);
-      });
+    deleteBtn(fileName) {
+      localStorage.removeItem(fileName);
     },
   },
 };
 </script>
 
 <style>
+.tabs {
+  width: 400px;
+  padding: 0;
+}
 .tab {
   display: inline-block;
   padding: 4px 8px;
