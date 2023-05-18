@@ -49,18 +49,21 @@ export default {
     // 클릭한 탭 선정 함수
     selectTab(fileNm) {
       this.selectedTab = fileNm;
-      console.log(fileNm);
-      //  this.addBtn(fileNm);
+      this.content = localStorage.getItem(fileNm);
     },
-    addBtn(fileNm) {
-      // 로컬스토리지에 입력한 텍스트에 저장
-      console.log(fileNm);
-      // localStorage.setItem(fileNm, this.content);
+    addBtn() {
       localStorage.setItem(this.tabNm, this.content);
       this.content = ""; // 비워주기(초기화)
     },
     deleteBtn(fileName) {
       localStorage.removeItem(fileName);
+      // 탭삭제
+      this.tabs.forEach((item, index) => {
+        if (item.name === fileName) {
+          this.tabs.splice(index, 1);
+        }
+      });
+      this.content = ""; // 비워주기(초기화)
     },
   },
 };
